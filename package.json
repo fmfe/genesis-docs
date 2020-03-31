@@ -1,0 +1,23 @@
+{
+  "name": "genesis-docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fmfe/genesis-docs.git"
+  },
+  "author": "Followme",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fmfe/genesis-docs/issues"
+  },
+  "homepage": "https://github.com/fmfe/genesis-docs#readme",
+  "devDependencies": {
+    "vuepress": "^1.4.0"
+  }
+}
