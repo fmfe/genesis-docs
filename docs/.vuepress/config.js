@@ -9,7 +9,7 @@ module.exports = {
           title: '快速开始',
           path: '/guide/',
           collapsable: false,
-          sidebarDepth: 1,
+          sidebarDepth: 2,
           children: [
             '/guide/',
             '/guide/install'
@@ -17,6 +17,7 @@ module.exports = {
         },
         {
           title: '@fmfe/genesis-core',
+          sidebarDepth: 2,
           children: ['/core/', '/core/ssr','/core/renderer','/core/plugin', '/core/format' ]
         },
       ]

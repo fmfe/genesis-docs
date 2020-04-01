@@ -30,6 +30,18 @@ const ssr = new SSR({
     }
 });
 ```
+### build.outputDir
+  - 说明：应用的编译目录，你可以使用相对于项目的路径，也可以使用绝对的路径
+  - 类型：`string`
+  - 默认值：`应用根目录/dist/`
+  - 例子：
+```typescript
+const ssr = new SSR({
+    build: {
+        outputDir: path.resolve(__dirname, './dist')
+    }
+});
+```
 ### build.transpile
   - 说明：默认的情况下，`webpack loader`会忽略 `node_modules` 目录的打包，通过配置 `build.transpile` 来打包你的程序，在开发插件的时候，特别有用
   - 类型：`string`
