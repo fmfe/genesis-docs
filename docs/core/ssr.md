@@ -169,7 +169,7 @@ ssr.Renderer = MyRenderer;
 类型：`string`
 ### ssr.outputDir
 说明：应用的编译输出目录，[options.build.outputDir](#build-outputdir)可以修改这个值      
-默认值：`应用根目录/dist/应用名称/`   
+默认值：`编译输出目录/应用名称/`   
 类型：`string`
 ### ssr.srcDir
 说明：源码目录   
@@ -195,7 +195,7 @@ ssr.Renderer = MyRenderer;
 类型：`string`
 ### ssr.outputClientManifestFile
 说明：客户端的映射文件的输出路径   
-默认值：`应用根目录/dist/应用名称/server/vue-ssr-client-manifest.json`   
+默认值：`编译输出目录/应用名称/server/vue-ssr-client-manifest.json`   
 类型：`string`
 ### ssr.serverBundleName
 说明：服务端的映射文件名称   
@@ -203,7 +203,7 @@ ssr.Renderer = MyRenderer;
 类型：`string`
 ### ssr.outputServerBundleFile
 说明：服务端的映射文件的输出路径   
-默认值：`应用根目录/dist/应用名称/server/vue-ssr-server-bundle.json`   
+默认值：`编译输出目录/应用名称/server/vue-ssr-server-bundle.json`   
 类型：`string`
 ### ssr.templaceFile
 说明：ssr 和 csr 的模块入口地址[options.build.templace](#build-template)可以修改这个值      
@@ -213,4 +213,32 @@ ssr.Renderer = MyRenderer;
 ### ssr.outputTemplaceFile
 说明：模板文件的输出地址   
 类型：`string`   
-默认值：`应用根目录/dist/应用名称/server/index.html`
+默认值：`编译输出目录/应用名称/server/index.html`
+
+## 方法
+### ssr.getBrowsers
+说明：获取 browsers 的配置
+例子：
+```typescript
+ssr.getBrowsers('client');
+ssr.getBrowsers('server');
+```
+### ssr.createRenderer
+说明：创建一个SSR的渲染器，一般来说，你会在生产环境中使用   
+例子：
+```typescript
+const renderer = ssr.createRenderer();
+const app = express();
+
+// 静态资源挂载
+app.use(
+    renderer.staticPublicPath,
+    express.static(renderer.staticDir, {
+        immutable: true,
+        maxAge: '31536000000'
+    })
+);
+// SSR 渲染中间件
+app.use(renderer.renderMiddleware());
+
+```
