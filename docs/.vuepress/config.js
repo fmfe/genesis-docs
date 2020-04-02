@@ -20,6 +20,11 @@ module.exports = {
           sidebarDepth: 2,
           children: ['/core/', '/core/ssr','/core/renderer','/core/plugin', '/core/format' ]
         },
+        {
+          title: '@fmfe/genesis-compiler',
+          sidebarDepth: 2,
+          children: ['/compiler/', '/compiler/build', '/compiler/watch']
+        },
       ]
     }
   }
