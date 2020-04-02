@@ -54,10 +54,6 @@ renderer.renderMiddleware(
     next: (err: any) => void
 ): Promise<void>;
 ```
-
-### renderer.createContext
-说明：
-
 ## 综合例子
 例子：
 ```typescript
