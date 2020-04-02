@@ -230,6 +230,10 @@ ssr.Renderer = MyRenderer;
 ## 方法
 ### ssr.getBrowsers
 说明：获取 browsers 的配置
+签名：
+```typescript
+ssr.getBrowsers(env: keyof Genesis.Browsers): Genesis.Browserslist;
+```
 例子：
 ```typescript
 ssr.getBrowsers('client');
@@ -237,6 +241,10 @@ ssr.getBrowsers('server');
 ```
 ### ssr.createRenderer
 说明：创建一个SSR的渲染器，一般来说，你会在生产环境中使用   
+签名：
+```typescript
+ssr.createRenderer(options?: Genesis.RendererOptions): Renderer;
+```
 例子：
 ```typescript
 const renderer = ssr.createRenderer();
