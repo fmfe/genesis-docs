@@ -25,7 +25,9 @@ npm install @fmfe/genesis-compiler -D
 ├── genesis.prod.js  // 生产环境启动入口
 └── package.json
 ```
-因为 `Genesis` 只是一个 SSR 插件，它不具备创建 HTTP 服务的能力，所以这里我们还需要安装`Express`，当然了，你可以选择其它的框架使用。
+::: tip 
+因为 `Genesis` 只是一个 SSR 插件，它不具备创建 HTTP 服务的能力，所以这里我们还需要安装 `Express` ，当然了，你可以选择其它的框架使用。
+:::
 ```bash
 npm install express
 ```
