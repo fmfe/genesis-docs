@@ -5,13 +5,13 @@
 说明：创建对象时，传入的 ssr 对象
 ## 方法
 ### build.start
-说明：开始执行编译
+说明：开始执行编译   
 签名：
 ```typescript
 build.start(): Promise<[boolean, boolean]>;
 ```
 ### build.destroy
-说明：取消编译，释放内存
+说明：取消编译，释放内存   
 签名：
 ```typescript
 build.destroy(): Promise<void>;
