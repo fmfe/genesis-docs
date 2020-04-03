@@ -13,6 +13,9 @@ npm install @fmfe/genesis-core
 npm install @fmfe/genesis-compiler -D
 ```
 ## 使用
+::: tip 
+服务端是基于 JavaScript 编写，客户端是基于 `typescript` 开发，如果你没有创建初始化程序，程序会自动给你创建一个简单的模板运行起来
+:::
 在你的项目根目录创建下面四个文件，当然了你也可以使用其它的文件名字
 ```
 .
@@ -20,6 +23,7 @@ npm install @fmfe/genesis-compiler -D
 ├── genesis.build.js // 编译生产环境代码
 ├── genesis.dev.js   // dev环境启动入口
 ├── genesis.prod.js  // 生产环境启动入口
+└── package.json
 ```
 因为 `Genesis` 只是一个 SSR 插件，它不具备创建 HTTP 服务的能力，所以这里我们还需要安装`Express`，当然了，你可以选择其它的框架使用。
 ```bash
@@ -88,8 +92,8 @@ app.use(
 startApp(renderer);
 
 ```
-上述的例子，是一个 `JavaScript` 的例子，如果需要使用 `typescript`运行时，可以了解一下[ts-node](https://github.com/TypeStrong/ts-node)   
-将命令添加到 `package.json` 中：
+上述的例子，是一个 `JavaScript` 的例子，如果需要使用 `typescript` 运行时，可以了解一下[ts-node](https://github.com/TypeStrong/ts-node)   
+### 添加命令到 `package.json`
 ```json
 {
   "scripts": {
