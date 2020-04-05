@@ -14,7 +14,7 @@ class MyPlugin extends Plugin {
     /**
      * 修改webpack的配置
      */
-    public webpackConfig(config: Genesis.WebpackHookParams) {}
+    public chainWebpack(config: Genesis.WebpackHookParams) {}
     /**
      * 编译完成之后执行
      */
@@ -41,7 +41,7 @@ class MyPlugin extends Plugin {
     /**
      * 修改webpack的配置
      */
-    public webpackConfig({ config, target }: Genesis.WebpackHookParams) {
+    public chainWebpack({ config, target }: Genesis.WebpackHookParams) {
         if (target === 'client') {
             config.externals({
                 vue: 'Vue',
