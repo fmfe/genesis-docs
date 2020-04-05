@@ -15,7 +15,7 @@ npm install @fmfe/genesis-compiler -D
 文档内所有的例子都基于 `ts` 进行编写，关于如何在 `Node` 运行 `ts` ，请了解 [ts-node](https://github.com/TypeStrong/ts-node)。如果你不想使用 `ts`，可以跳过这个步骤，只需要将文档的例子，修改成 `js` 语法即可
 :::
 ```bash
-npm install ts-node
+npm install ts-node typescript
 ```
 ## HTTP 服务
 ::: tip 
