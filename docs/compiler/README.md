@@ -1,3 +1,6 @@
+---
+sidebar: auto
+---
 # 引导
 `@fmfe/genesis-compiler` 是开发时的依赖，在生产环境中你不会使用到它，这能有效减少生产依赖的大小
 

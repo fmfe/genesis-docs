@@ -11,25 +11,25 @@ module.exports = {
         { text: '开发编译', link: '/compiler/' }
       ],
       sidebar: [
+        '/',
         {
           title: '指南',
           path: '/guide/',
           collapsable: false,
-          sidebarDepth: 2,
           children: [
             '/guide/'
           ]
         },
-        {
-          title: '@fmfe/genesis-core',
-          sidebarDepth: 2,
-          children: ['/core/', '/core/ssr','/core/renderer','/core/plugin', '/core/format' ]
-        },
-        {
-          title: '@fmfe/genesis-compiler',
-          sidebarDepth: 2,
-          children: ['/compiler/', '/compiler/build', '/compiler/watch']
-        },
+        // {
+        //   title: '@fmfe/genesis-core',
+        //   collapsable: false,
+        //   children: ['/core/', '/core/ssr','/core/renderer','/core/plugin', '/core/format' ]
+        // },
+        // {
+        //   title: '@fmfe/genesis-compiler',
+        //   collapsable: false,
+        //   children: ['/compiler/', '/compiler/build', '/compiler/watch']
+        // },
       ]
     }
   }
