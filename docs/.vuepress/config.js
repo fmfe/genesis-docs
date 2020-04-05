@@ -1,4 +1,6 @@
 module.exports = {
+    base: '/genesis-docs/',
+    dest: 'public',
     themeConfig: {
       // nav: [
       //   { text: '首页', link: '/' },
