@@ -159,3 +159,5 @@ npm run start
 ```
 将常用命令添加到 npm script 中，可以让我们各个快速的启动应用   
 执行 `npm run dev`命令，在浏览器中访问 `http://localhost:3000`
+## 完整例子 
+- [vue-genesis-templace](https://github.com/fmfe/vue-genesis-templace) 一个简单的，快速开发的例子
