@@ -98,7 +98,7 @@ app.use(
 
 startApp(renderer);
 ```
-生产环境启动入口
+生产环境启动入口，因为静态资源在生产环境中，都是使用 `[name].[contenthash:8]` 哈希生成的，所以静态资源可以直接设置一年的缓存时间
 ### tsconfig.json
 ```json
 {
@@ -159,5 +159,34 @@ npm run start
 ```
 将常用命令添加到 npm script 中，可以让我们各个快速的启动应用   
 执行 `npm run dev`命令，在浏览器中访问 `http://localhost:3000`
-## 完整例子 
+## 高级玩法
+- `renderer` 对象提供了 `renderJson` 的方法输出 `json`，所以你只要把 `style`、`html`、`scriptState`、`script` 输出在页面上，它仍然是可以正常渲染的。因此你可以和第三方的模板引擎配合使用，比如像[ejs](https://github.com/mde/ejs)、[pug](https://github.com/pugjs/pug/tree/master/packages/pug)等等模板引擎。
+- 你甚至可以直接写一个 `/api/test`页面输出 `json`，实现一个类似于 `<remote-view api="/api/test" />`组件，就可以实现多服务之间的页面渲染
+- 利用 `renderer.renderJson(req, res)` 方法，你甚至可以实现类似于前端微服务概念的程序，由聚合服务将不同的 SSR 服务的渲染结果聚合起来
+- 如果拆分的服务较多，就需要将基础的包抽离到CDN上，比如 `vue`、`vue-router`、`axios`等等。详情请看[外置化依赖](../core/plugin.html#外置化依赖)
+
+```typescript
+app.get('/test', (req, res, next) => {
+    renderer
+        .renderJson(req, res)
+        .then((r) => {
+            res.send(
+                r.data.style +
+                    r.data.html +
+                    r.data.scriptState +
+                    r.data.script
+            );
+        })
+        .catch(next);
+});
+app.get('/api/test', (req, res, next) => {
+    renderer
+        .renderJson(req, res)
+        .then((r) => {
+            res.send(r.data);
+        })
+        .catch(next);
+});
+```
+## 例子 
 - [vue-genesis-templace](https://github.com/fmfe/vue-genesis-templace) 一个简单的，快速开发的例子
