@@ -50,7 +50,7 @@ export const startApp = (renderer: Renderer) => {
 };
 
 ```
-因为在开发环境时，需要等待 ` await watch.start();` 执行完成后，才能拿到 `renderer`，所以这里需要导出，`app`，`ssr`，`startApp` 给不用的环境使用。
+因为在开发环境时，需要等待 ` await watch.start();` 执行完成后，才能拿到 `renderer`，所以这里需要导出，`app`，`ssr`，`startApp` 给不同的环境使用。
 ### genesis.build.ts
 ```typescript
 import { Build } from '@fmfe/genesis-compiler';
