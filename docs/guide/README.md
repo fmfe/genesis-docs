@@ -32,6 +32,7 @@ npm install express
 ├── genesis.build.ts // 编译生产环境代码
 ├── genesis.dev.ts   // dev环境启动入口
 ├── genesis.prod.ts  // 生产环境启动入口
+├── tsconfig.json    // TS 的配置文件
 └── package.json
 ```
 ### genesis.ts
@@ -98,6 +99,46 @@ app.use(
 startApp(renderer);
 ```
 生产环境启动入口
+### tsconfig.json
+```json
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "allowJs": true,
+        "sourceMap": true,
+        "strict": true,
+        "noEmit": true,
+        "noUnusedLocals": true,
+        "skipLibCheck": true,
+        "noImplicitAny": false,
+        "resolveJsonModule": true,
+        "baseUrl": "./",
+        "typeRoots": [
+            "./types/*"
+        ],
+        "types": [
+            "@types/node"
+        ],
+        "allowSyntheticDefaultImports": true
+    },
+    "ts-node": {
+        "compilerOptions": {
+            "target": "es2018",
+            "module": "commonjs",
+            "moduleResolution": "node",
+            "allowSyntheticDefaultImports": true,
+            "declaration": true,
+            "esModuleInterop": true,
+            "outDir": "../dist"
+        }
+    }
+}
+```
+这里提供了一份常见的 ts 配置，你可以根据自己的需要进行调整
 ### package.json
 ```json
 {
