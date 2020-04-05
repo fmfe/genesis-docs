@@ -188,5 +188,5 @@ app.get('/api/test', (req, res, next) => {
         .catch(next);
 });
 ```
-## 例子 
+## 更多示例 
 - [vue-genesis-templace](https://github.com/fmfe/vue-genesis-templace) 一个简单的，快速开发的例子
