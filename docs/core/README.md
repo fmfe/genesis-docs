@@ -1,8 +1,8 @@
 ---
 sidebar: auto
 ---
-# 引导
-`@fmfe/genesis-core` 核心库，只提供了生产环境运行所需的功能，所以它在生产环境时，总是保证依赖是最小的。在开发环境时，需要和 `@fmfe/genesis-compiler`配合使用
+# genesis-core
+提供了生产环境运行所需的功能，所以它在生产环境时，总是保证依赖是最小的。在开发环境时，需要和 [@fmfe/genesis-compiler](../compiler) 配合使用
 
 ## 安装
 ```bash
@@ -11,12 +11,6 @@ npm install @fmfe/genesis-core
 # yarn
 yarn add @fmfe/genesis-core
 ```
-
-## 核心概念
-- [SSR](#ssr)
-- [Renderer](#renderer)
-- [Plugin](#plugin)
-- [Format](#format)
 
 ## SSR 选项
 ```typescript
@@ -246,7 +240,7 @@ ssr.Renderer = MyRenderer;
 
 ## SSR 方法
 ### ssr.getBrowsers
-说明：获取 browsers 的配置
+说明：获取 browsers 的配置   
 签名：
 ```typescript
 ssr.getBrowsers(env: keyof Genesis.Browsers): Genesis.Browserslist;
@@ -289,13 +283,13 @@ app.use(renderer.renderMiddleware());
 
 ## Renderer 方法
 ### renderer.hotUpdate
-说明：热更新接口，一般来说只作为开发环境的热更新使用
+说明：热更新接口，一般来说只作为开发环境的热更新使用   
 签名：
 ```typescript
 renderer.hotUpdate(options?: Genesis.RendererOptions): void;
 ```
 ### renderer.renderJson
-说明：渲染一个json，可以利用这个API开发出微前端应用所需的接口  
+说明：渲染一个json，可以利用这个API开发出微前端应用所需的接口   
 签名：
 ```typescript
 renderer.renderJson(
@@ -489,6 +483,10 @@ public page(data: Genesis.RenderData) {
 ```
 例子：
 ```typescript
+import { Format } from '@fmfe/genesis-core';
+
+const format = new Format();
+
 renderer.renderJson(req, res).then(res => format.page(res.data));
 ```
 在你调用 `renderer.renderHtml(req, res)` 和 `renderer.renderMiddleware(req, res, next)` 时，会自动调用对应的格式化方法   

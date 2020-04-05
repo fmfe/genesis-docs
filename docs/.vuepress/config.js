@@ -7,8 +7,13 @@ module.exports = {
       nav: [
         { text: '首页', link: '/' },
         { text: '指南', link: '/guide/' },
-        { text: '核心库', link: '/core/' },
-        { text: '开发编译', link: '/compiler/' }
+        {
+          text: 'API',
+          items: [
+            { text: 'genesis-core', link: '/core/' },
+            { text: 'genesis-compiler', link: '/compiler/' }
+          ]
+        }
       ],
       sidebar: [
         '/',
@@ -19,17 +24,7 @@ module.exports = {
           children: [
             '/guide/'
           ]
-        },
-        // {
-        //   title: '@fmfe/genesis-core',
-        //   collapsable: false,
-        //   children: ['/core/', '/core/ssr','/core/renderer','/core/plugin', '/core/format' ]
-        // },
-        // {
-        //   title: '@fmfe/genesis-compiler',
-        //   collapsable: false,
-        //   children: ['/compiler/', '/compiler/build', '/compiler/watch']
-        // },
+        }
       ]
     }
   }
