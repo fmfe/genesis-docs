@@ -449,7 +449,8 @@ class MyPlugin extends Plugin {
     public renderBefore(context: Genesis.RenderContext) {
         context.data.script +=
             '<script src="https://cdn.jsdelivr.net/npm/vue@' + require('vue').version + '" defer></script>' +
-            '<script src="https://cdn.jsdelivr.net/npm/vue-router@' + require('vue-router').version + '" defer></script>';
+            '<script src="https://cdn.jsdelivr.net/npm/vue-router@' + require('vue-router').version + '" defer></script>' +
+            '<script src="https://cdn.jsdelivr.net/npm/axios@' + require('axios').version + '" defer></script>';
     }
 }
 
