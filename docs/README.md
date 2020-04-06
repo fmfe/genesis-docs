@@ -14,6 +14,9 @@ features:
   details: 将 CSR、SSR 渲染的结果，输出 json，在客户端、服务端进行渲染
 footer: Genesis 因 Followme 5.0 而诞生
 ---
+::: warning 注意
+项目文档和单元测试还在编写中，还未发布正式版本。如果你对本项目感兴趣，欢迎加我微信 `lzxb20` 或者 QQ `1340641314`沟通交流。
+::: 
 ::: tip 核心能力
 `express` 不是必须的，它可以是任意的 HTTP 框架，`renderer` 可以渲染成 `html` 或 `json`，由 `remote-view` 远程组件渲染
 :::
