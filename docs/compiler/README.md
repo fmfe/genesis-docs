@@ -85,3 +85,26 @@ const start = async () => {
 start();
 
 ```
+## Window genesis
+在客户端，程序将会在 `window` 对象上注入一个 `genesis` 对象来管理应用的安装和卸载
+### genesis.register
+说明：注册一个应用，js 加载完成后，程序会自动注册，实际上就是 `src/entry-client` 文件 `export default` 导出的方法   
+签名：
+```typescript
+window.genesis.register(
+    name: string,
+    createApp: (options: Genesis.ClientOptions) => Promise<Vue>
+);
+```
+### genesis.install
+说明：安装一个应用，将会返回一个 `appId`给你，你可以调用 `uninstall` 强制卸载应用   
+签名：
+```typescript
+window.genesis.install(options: Genesis.ClientOptions): number;
+```
+### genesis.uninstall
+说明：强制卸载应用，一般来说，你都不需要调用这个方法，程序会在 Vue 实例销毁时，自动卸载   
+签名：
+```typescript
+window.genesis.uninstall(appId: number): Promise<void>;
+```
