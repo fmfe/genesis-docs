@@ -27,6 +27,14 @@ module.exports = {
           children: [
             '/guide/'
           ]
+        },
+        {
+          title: '进阶',
+          path: '/guide/',
+          collapsable: false,
+          children: [
+            '/guide/remote',
+          ]
         }
       ]
     }

@@ -157,7 +157,7 @@ npm run build
 # 生产环境运行
 npm run start
 ```
-将常用命令添加到 npm script 中，可以让我们各个快速的启动应用   
+将常用命令添加到 `npm script` 中，可以让我们各个快速的启动应用   
 执行 `npm run dev`命令，在浏览器中访问 `http://localhost:3000`
 ## 高级玩法
 - `renderer` 对象提供了 `renderJson` 的方法输出 `json`，所以你只要把 `style`、`html`、`scriptState`、`script` 输出在页面上，它仍然是可以正常渲染的。因此你可以和第三方的模板引擎配合使用，比如像[ejs](https://github.com/mde/ejs)、[pug](https://github.com/pugjs/pug/tree/master/packages/pug)等等模板引擎。
