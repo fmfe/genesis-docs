@@ -8,10 +8,13 @@ module.exports = {
         { text: '首页', link: '/' },
         { text: '指南', link: '/guide/' },
         {
-          text: 'API',
+          text: '核心库',
           items: [
             { text: 'genesis-core', link: '/core/' },
-            { text: 'genesis-compiler', link: '/compiler/' }
+            { text: 'genesis-compiler', link: '/compiler/' },
+            { text: 'genesis-app', link: '/app/' },
+            { text: 'genesis-remote', link: '/remote/' },
+            { text: 'square', link: '/square/' },
           ]
         }
       ],
