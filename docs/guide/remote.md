@@ -3,7 +3,7 @@
 ```typescript
 app.get('/api/index', (req, res, next) => {
     renderer
-        .renderJson(req, res)
+        .renderJson({ req, res })
         .then((r) => res.send(r.data))
         .catch(next);
 });
