@@ -15,7 +15,7 @@ features:
 footer: Genesis 因 Followme 5.0 而诞生
 ---
 ::: warning 注意
-本文档基于 `0.0.41-beta.7` 版本编写，项目文档和单元测试还在编写中，还未发布正式版本。
+本文档基于 `0.0.41-beta.9` 版本编写，请在安装测试的时候，增加版本号，项目文档和单元测试还在编写中，还未发布正式版本。
 ::: 
 ::: tip 如果有一天
 你写的页面，也可以提供 `API` 接口，让所有的前端页面调用，你会喜欢吗？
@@ -48,4 +48,7 @@ app.get('/api/header', (req, res, next) => {
 </template>
 ```
 ## 团队成员
-[@lzxb](https://www.followme.com/user/203489) [@zhgh](https://www.followme.cn/user/229620/zone) [@Deboy](https://www.followme.com/user/196312/zone)
+[@lzxb](https://www.followme.com/user/203489)    
+[@zhgh](https://www.followme.cn/user/229620/zone)    
+[@Deboy](https://www.followme.com/user/196312/zone)    
+[@sxqstyle](https://www.followme.com/user/256784/zone)   
