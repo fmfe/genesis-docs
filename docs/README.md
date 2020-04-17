@@ -9,7 +9,7 @@ features:
 - title: 简单
   details: 新老项目，开箱即用
 - title: 多实例
-  details: 一个页面可以由多个 SSR 实例组成
+  details: 一个页面可以由多个 Vue 实例组成
 - title: 远程组件
   details: 输出 json，提供 API 给其它页面使用
 footer: Genesis 因 Followme 5.0 而诞生
