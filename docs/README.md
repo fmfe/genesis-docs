@@ -30,7 +30,8 @@ const ssr = new SSR();
 const renderer = ssr.createRenderer();
 // 提供一个API使用
 app.get('/api/header', (req, res, next) => {
-    const url = req.url || '/';
+    const url =
+        typeof req.query.renderUrl === 'string' ? req.query.renderUrl : '/';
     renderer
         .renderJson({ req, res, url })
         .then((r) => {
