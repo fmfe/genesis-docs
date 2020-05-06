@@ -40,18 +40,40 @@ Vue.extend({
 </template>
 ```
 ### clientFetch
-说明：只会在`客户端`执行，优先级比 fetch 高
+说明：在`客户端`执行，优先级比 fetch 高
 ```vue
 <template>
     <remote-view :clientFetch="clientFetch" />
 </template>
 ```
 ### serverFetch
-说明：只会在`服务端`执行，优先级比 fetch 高
+说明：在`服务端`执行，优先级比 fetch 高，只能在基于 `Genesis` 开发的服务才能使用。
 ```vue
 <template>
     <remote-view :serverFetch="serverFetch" />
 </template>
+```
+特别说明：因为在服务端加载远程组件，需要存储远程服务的数据，所以需要将对应的上下文传给 `Vue` 实例
+```typescript
+// entry-client.ts
+import { ClientOptions } from '@fmfe/genesis-core';
+import Vue from 'vue';
+
+export default async (clientOptions: ClientOptions): Promise<Vue> => {
+    return new Vue({
+        clientOptions
+    });
+};
+// entry-server.ts
+import { RenderContext } from '@fmfe/genesis-core';
+import Vue from 'vue';
+
+export default async (context: RenderContext): Promise<Vue> => {
+    return new Vue({
+        renderContext: context
+    });
+};
+
 ```
 ## 数据结构
 在执行 `fetch`、`clientFetch`、`serverFetch` 钩子时，需要返回 `renderer.renderJson(options)` 执行的结果。所以基本的数据结构，应该是下面这样子的
