@@ -24,7 +24,9 @@ npm install ts-node typescript
 ```bash
 npm install express
 ```
-## 编码
+## 例子实现
+下面将会实现一个最基础的 SSR 项目实例，它会使用到三个核心概念 `SSR`、`Build`、`Renderer`
+### 目录结构
 在你的项目根目录创建下面四个文件，当然了你也可以使用其它的文件名字
 ```
 .
@@ -40,54 +42,98 @@ npm install express
 import express from 'express';
 import { SSR, Renderer } from '@fmfe/genesis-core';
 
+/**
+ * 创建一个应用程序
+ */
 export const app = express();
 
+/**
+ * 创建一个 SSR 实例
+ */
 export const ssr = new SSR();
 
+/**
+ * 拿到渲染器后，启动应用程序
+ */
 export const startApp = (renderer: Renderer) => {
+    /**
+     * 使用默认渲染中间件进行渲染，你也可以调用更加底层的 renderer.renderJson 和 renderer.renderHtml 来实现渲染
+     */
     app.use(renderer.renderMiddleware);
+    /**
+     * 监听端口
+     */
     app.listen(3000, () => console.log(`http://localhost:3000`));
 };
 
 ```
-因为在开发环境时，需要等待 ` await watch.start();` 执行完成后，才能拿到 `renderer`，所以这里需要导出，`app`，`ssr`，`startApp` 给不同的环境使用。
+开发环境和生产环境，共同的启动逻辑
 ### genesis.build.ts
 ```typescript
 import { Build } from '@fmfe/genesis-compiler';
 import { ssr } from './genesis';
 
 const start = () => {
-    return new Build(ssr).start();
+    /**
+     * 创建一个编译实例
+     */
+    const build = new Build(ssr);
+    /**
+     * 开始执行编译程序，构建生产环境应用包
+     */
+    return build.start();
 };
 start();
 ```
-构建生产换依赖包
+编译生产环境所需的代码
 ### genesis.dev.ts
 ```typescript
 import { Watch } from '@fmfe/genesis-compiler';
 import { ssr, app, startApp } from './genesis';
 
 const start = async () => {
+    /**
+     * 创建一个观察实例
+     */
     const watch = new Watch(ssr);
+    /**
+     * 启动观察
+     */
     await watch.start();
+    /**
+     * 拿到观察实例上对应的渲染器
+     */
     const renderer = watch.renderer;
-    // 开发时使用的中间件，如果你不是使用 express，你需要将这两个中间件，包装成对应框架的中间件
+    /**
+     * 开发的中间件
+     */
     app.use(watch.devMiddleware);
+    /**
+     * 热更新的中间件
+     */
     app.use(watch.hotMiddleware);
-    // 拿到渲染器之后，启动服务
+    /**
+     * 拿到渲染器后，启动应用程序
+     */
     startApp(renderer);
 };
 start();
+
 ```
-开发环境时，程序启动入口文件
+开发环境，程序的启动入口
 ### genesis.prod.ts
 ```typescript
 import express from 'express';
 import { ssr, app, startApp } from './genesis';
 
+/**
+ * 生产环境，应用程序我们已经编译好了，所以在这里可以直接创建一个渲染器
+ */
 const renderer = ssr.createRenderer();
 
-// 设置静态目录和缓存
+/**
+ * 生产环境，静态资源都是基于内容哈希生成的文件名，所以这里设置静态目录的时候，设置强缓存即可
+ */
 app.use(
     renderer.staticPublicPath,
     express.static(renderer.staticDir, {
@@ -96,9 +142,13 @@ app.use(
     })
 );
 
+/**
+ * 启动应用
+ */
 startApp(renderer);
+
 ```
-生产环境启动入口，因为静态资源在生产环境中，都是使用 `[name].[contenthash:8]` 哈希生成的，所以静态资源可以直接设置一年的缓存时间
+生产环境启动入口
 ### tsconfig.json
 ```json
 {
@@ -159,34 +209,6 @@ npm run start
 ```
 将常用命令添加到 `npm script` 中，可以让我们各个快速的启动应用   
 执行 `npm run dev`命令，在浏览器中访问 `http://localhost:3000`
-## 高级玩法
-- `renderer` 对象提供了 `renderJson` 的方法输出 `json`，所以你只要把 `style`、`html`、`scriptState`、`script` 输出在页面上，它仍然是可以正常渲染的。因此你可以和第三方的模板引擎配合使用，比如像[ejs](https://github.com/mde/ejs)、[pug](https://github.com/pugjs/pug/tree/master/packages/pug)等等模板引擎。
-- 你甚至可以直接写一个 `/api/test`页面输出 `json`，实现一个类似于 `<remote-view api="/api/test" />`组件，就可以实现多服务之间的页面渲染
-- 利用 `renderer.renderJson({ req, res })` 方法，你甚至可以实现类似于前端微服务概念的程序，由聚合服务将不同的 SSR 服务的渲染结果聚合起来
-- 如果拆分的服务较多，就需要将基础的包抽离到CDN上，比如 `vue`、`vue-router`、`axios`等等。详情请看[外置化依赖](../core/#外置化依赖)
 
-```typescript
-app.get('/test', (req, res, next) => {
-    renderer
-        .renderJson({ req, res })
-        .then((r) => {
-            res.send(
-                r.data.style +
-                    r.data.html +
-                    r.data.scriptState +
-                    r.data.script
-            );
-        })
-        .catch(next);
-});
-app.get('/api/test', (req, res, next) => {
-    renderer
-        .renderJson({ req, res })
-        .then((r) => {
-            res.send(r.data);
-        })
-        .catch(next);
-});
-```
-## 更多示例 
+## 例子源码
 - [vue-genesis-templace](https://github.com/fmfe/vue-genesis-templace) 一个简单的，快速开发的例子
