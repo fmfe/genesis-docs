@@ -14,7 +14,7 @@ module.exports = {
             { text: 'genesis-compiler', link: '/compiler/' },
             { text: 'genesis-app', link: '/app/' },
             { text: 'genesis-remote', link: '/remote/' },
-            { text: 'square', link: '/square/' },
+            // { text: 'square', link: '/square/' },
           ]
         }
       ],
