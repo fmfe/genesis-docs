@@ -147,17 +147,6 @@ const ssr = new SSR({
 // ssr.属性
 
 ```
-### ssr.Format
-说明：一个渲染结果格式化的类，你可以修改默认的格式化逻辑，详情请看 [Format](./format.md)   
-例子：
-```typescript
-import { SSR, Format } from '@fmfe/genesis-core';
-
-class MyFormat extends Format {}
-
-const ssr = new SSR({});
-ssr.Format = MyFormat;
-```
 ### ssr.Renderer
 说明：一个SSR的渲染器，你可以修改默认的渲染逻辑，详情请看 [Renderer](./renderer.md)   
 ```typescript
@@ -212,17 +201,9 @@ ssr.Renderer = MyRenderer;
 说明：服务端的入口文件   
 默认值：`应用根目录/src/entry-server`   
 类型：`string`
-### ssr.clientManifestName
-说明：客户端的映射文件名称   
-默认值：`vue-ssr-client-manifest.json`   
-类型：`string`
 ### ssr.outputClientManifestFile
 说明：客户端的映射文件的输出路径   
 默认值：`编译输出目录/应用名称/server/vue-ssr-client-manifest.json`   
-类型：`string`
-### ssr.serverBundleName
-说明：服务端的映射文件名称   
-默认值：`vue-ssr-server-bundle.json`   
 类型：`string`
 ### ssr.outputServerBundleFile
 说明：服务端的映射文件的输出路径   
@@ -333,7 +314,7 @@ renderer.renderMiddleware(
 例子：
 ```typescript
 import express from 'express';
-import { SSR, Renderer } from '@fmfe/genesis-core';
+import { SSR } from '@fmfe/genesis-core';
 
 const app = express();
 const ssr = new SSR();
@@ -351,15 +332,18 @@ app.use(
 // 首页渲染成html
 app.get('/', (req, res, next) => {
     renderer
-        .renderHtml(req, res, 'ssr-html')
+        .renderHtml({ req, res, mode: 'ssr-html' })
         .then((r) => res.send(r.data))
         .catch(next); // SSR 报错，则向下一个中间件执行
 });
 
 // api开头的一律渲染成json
 app.get('/api/', (req, res, next) => {
+    const url =
+        typeof req.query.renderUrl === 'string' ? req.query.renderUrl : '/';
+
     renderer
-        .renderJson(req, res, 'ssr-json')
+        .renderJson({ req, res, mode: 'ssr-json', url })
         .then((r) => res.send(r.data))
         .catch(next); // SSR 报错，则向下一个中间件执行
 });
@@ -454,117 +438,4 @@ class MyPlugin extends Plugin {
     }
 }
 
-```
-## Format 属性
-### format.ssr
-说明：在创建实例的时候，会将当前的ssr实例传入，所以它总是会这样
-```typescript
-const ssr = new SSR()
-const renderer = ssr.createRenderer();
-const format =  new Format(ssr);
-format.ssr === ssr // true
-```
-## Format 方法
-### format.page
-说明：完整的对页面进行渲染，包含了`style`、`script`、`state`、`script`
-签名：
-```typescript
-format.page(data: Genesis.RenderData): string;
-```
-默认值：
-```typescript
-public page(data: Genesis.RenderData) {
-    return (
-        this.style(data) +
-        this.html(data) +
-        this.scriptState(data) +
-        this.script(data)
-    );
-}
-```
-例子：
-```typescript
-import { Format } from '@fmfe/genesis-core';
-
-const format = new Format();
-
-renderer.renderJson(req, res).then(res => format.page(res.data));
-```
-在你调用 `renderer.renderHtml(req, res)` 和 `renderer.renderMiddleware(req, res, next)` 时，会自动调用对应的格式化方法   
-你也可以在调用 `renderer.renderJson(req, res)` 方法时，手动进行格式化状态
-
-### format.html
-说明：对html进行格式化   
-签名：
-```typescript
-format.html(data: Genesis.RenderData): string;
-```
-默认值：
-```typescript
-public html(data: Genesis.RenderData) {
-    return data.html;
-}
-```   
-例子：
-```typescript
-renderer.renderJson(req, res).then(res => format.html(res.data));
-```
-### format.style
-说明：对样式进行格式化   
-签名：
-```typescript
-format.style(data: Genesis.RenderData): string;
-```
-默认值：
-```typescript
-public style(data: Genesis.RenderData) {
-    return data.style;
-}
-```   
-例子：
-```typescript
-renderer.renderJson(req, res).then(res => format.style(res.data));
-```
-### format.scriptState
-说明：对状态进行格式化，默认会使用[serialize-javascript](https://github.com/yahoo/serialize-javascript)来注入应用的状态   
-签名：
-```typescript
-format.scriptState(data: Genesis.RenderData): string;
-```
-默认值：
-```typescript
-public scriptState(data: Genesis.RenderData) {
-    const scriptJSON: string = serialize(
-        {
-            url: data.url,
-            id: data.id,
-            name: data.name,
-            state: data.state
-        },
-        {
-            isJSON: true
-        }
-    );
-    return `<script data-ssr-genesis-name="${data.name}" data-ssr-genesis-id="${data.id}">window["${data.id}"]=${scriptJSON};</script>`;
-}
-```
-例子：
-```typescript
-renderer.renderJson(req, res).then(res => format.scriptState(res.data));
-```
-### format.script
-说明：对脚本进行格式化   
-签名：
-```typescript
-format.script(data: Genesis.RenderData): string;
-```
-默认值：
-```typescript
-public script(data: Genesis.RenderData) {
-    return data.script;
-}
-```
-例子：
-```typescript
-renderer.renderJson(req, res).then(res => format.script(res.data));
 ```
