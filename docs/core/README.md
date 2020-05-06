@@ -148,17 +148,7 @@ const ssr = new SSR({
 
 ```
 ### ssr.Renderer
-说明：一个SSR的渲染器，你可以修改默认的渲染逻辑，详情请看 [Renderer](./renderer.md)   
-```typescript
-import { SSR, Renderer } from '@fmfe/genesis-core';
-
-const ssr = new SSR({});
-
-class MyRenderer extends Renderer {}
-
-ssr.Renderer = MyRenderer;
-
-```
+说明：一个SSR的渲染器，详情请看 [Renderer](./renderer.md)   
 ### ssr.options
 说明：你传入的选项   
 类型：`Genesis.Options`
@@ -273,88 +263,37 @@ renderer.hotUpdate(options?: Genesis.RendererOptions): void;
 说明：渲染一个json，可以利用这个API开发出微前端应用所需的接口   
 签名：
 ```typescript
-renderer.renderJson(
-    req: IncomingMessage,
-    res: ServerResponse,
-    mode: Genesis.RenderModeJson = 'ssr-json'
+renderJson(
+    options?: Genesis.RenderOptions<Genesis.RenderModeJson>
 ): Promise<Genesis.RenderResultJson>;
 ```
 ### renderer.renderHtml
 说明：渲染一个html  
 签名：
 ```typescript
-renderer.renderHtml(
-    req: IncomingMessage,
-    res: ServerResponse,
-    mode: Genesis.RenderMode = 'ssr-html'
+renderHtml(
+    options?: Genesis.RenderOptions<Genesis.RenderModeHtml>
 ): Promise<Genesis.RenderResultHtml>;
 ```
 ### renderer.render
 说明：可以渲染成 json 或者 html，它更像是 `renderer.renderJson` 和 `renderer.renderHtml`的综合体  
 签名：
 ```typescript
-renderer.render(
-    req: IncomingMessage,
-    res: ServerResponse,
-    mode: Genesis.RenderMode = 'ssr-html'
+render<T extends Genesis.RenderMode = Genesis.RenderMode>(
+    options?: Genesis.RenderOptions<T>
 ): Promise<Genesis.RenderResul>;
 ```
 ### renderer.renderMiddleware
 说明：渲染的中间件，只要是类似于`express`的中间件设计，都可以直接使用，你可以通过[Plugin](./plugin)的方式来调整应该渲染成json或html   
 签名：
 ```typescript
-renderer.renderMiddleware(
-    req: IncomingMessage, 
-    res: ServerResponse, 
+renderMiddleware(
+    req: IncomingMessage,
+    res: ServerResponse,
     next: (err: any) => void
 ): Promise<void>;
 ```
 ## Renderer 例子
-### 生产环境使用
-例子：
-```typescript
-import express from 'express';
-import { SSR } from '@fmfe/genesis-core';
-
-const app = express();
-const ssr = new SSR();
-const renderer = ssr.createRenderer(); // 等同于 new Renderer(ssr);
-
-// 设置静态目录
-app.use(
-    renderer.staticPublicPath,
-    express.static(renderer.staticDir, {
-        immutable: true,
-        maxAge: '31536000000'
-    })
-);
-
-// 首页渲染成html
-app.get('/', (req, res, next) => {
-    renderer
-        .renderHtml({ req, res, mode: 'ssr-html' })
-        .then((r) => res.send(r.data))
-        .catch(next); // SSR 报错，则向下一个中间件执行
-});
-
-// api开头的一律渲染成json
-app.get('/api/', (req, res, next) => {
-    const url =
-        typeof req.query.renderUrl === 'string' ? req.query.renderUrl : '/';
-
-    renderer
-        .renderJson({ req, res, mode: 'ssr-json', url })
-        .then((r) => res.send(r.data))
-        .catch(next); // SSR 报错，则向下一个中间件执行
-});
-
-// 其它路由，自动使用中间件渲染
-app.get('*', renderer.renderMiddleware);
-
-app.listen(3000, () => console.log(`http://localhost:3000`));
-
-```
-
 ### 生成 HTML
 说明：下面举了一个生成静态html的例子
 ```typescript
@@ -368,7 +307,8 @@ const renderer = ssr.createRenderer();
 const render = (url: string) => {
     const req = new IncomingMessage(new Socket());
     const res = new ServerResponse(req);
-    return renderer.renderHtml(req, res, 'ssr-html');
+    req.url = url;
+    return renderer.renderHtml({ req, res, mode: 'ssr-html' });
 };
 
 render('/home').then((res) => {
