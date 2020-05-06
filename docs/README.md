@@ -2,7 +2,7 @@
 home: true
 heroImage: 
 heroText: Genesis
-tagline: 轻量级的 Vue SSR 插件
+tagline: 轻量级的 Vue SSR 库
 actionText: 快速开始 →
 actionLink: /guide/
 features:

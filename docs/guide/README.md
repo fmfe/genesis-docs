@@ -19,7 +19,7 @@ npm install ts-node typescript
 ```
 ## HTTP 服务
 ::: tip 
-因为 `Genesis` 只是一个 SSR 插件，它不具备创建 HTTP 服务的能力，所以这里我们还需要安装 `Express` 。如果你选择了其它的框架，可以跳过这一步，并且将例子中的代码，转换成对应框架的代码即可
+因为 `Genesis` 只是一个 SSR 库，它不具备创建 HTTP 服务的能力，所以这里我们还需要安装 `Express` 。如果你选择了其它的框架，可以跳过这一步，并且将例子中的代码，转换成对应框架的代码即可
 :::
 ```bash
 npm install express
