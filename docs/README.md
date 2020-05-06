@@ -28,10 +28,11 @@ import { SSR } from '@fmfe/genesis-core';
 const app = express();
 const ssr = new SSR();
 const renderer = ssr.createRenderer();
-// JSON 渲染模式，其它服务通过远程组件调用 <remote-view url="/api/header" />
+// 提供一个API使用
 app.get('/api/header', (req, res, next) => {
+    const url = req.url || '/';
     renderer
-        .renderJson({ req, res })
+        .renderJson({ req, res, url })
         .then((r) => {
             res.send(r.data);
         })
@@ -43,9 +44,24 @@ app.get('/api/header', (req, res, next) => {
 <template>
     <div class="app">
         <!-- 其它的服务或 CSR 的老项目，也可以这样直接调用 -->
-        <remote-view url="/api/header" />
+        <remote-view :fetch="fetch" />
     </div>
 </template>
+<script>
+import axios from 'axios';
+
+export default {
+  methods: {
+    fetch () {
+      const res = await axios.get('/api/header');
+      if (res.status === 200) {
+        return res.data;
+      }
+      return null;
+    }
+  }
+}
+</script>
 ```
 ## 团队成员
 [@lzxb](https://www.followme.com/user/203489)    
