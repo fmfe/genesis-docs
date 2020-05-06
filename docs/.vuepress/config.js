@@ -1,7 +1,7 @@
 module.exports = {
     base: '/genesis-docs/',
+    title: 'Genesis',
     themeConfig: {
-      title: 'Genesis',
       repo: 'fmfe/genesis',
       repoLabel: 'Github',
       nav: [
