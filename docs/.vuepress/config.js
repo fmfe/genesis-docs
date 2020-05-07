@@ -25,7 +25,8 @@ module.exports = {
           path: '/guide/',
           collapsable: false,
           children: [
-            '/guide/'
+            '/guide/',
+            '/guide/introduce',
           ]
         },
         {
