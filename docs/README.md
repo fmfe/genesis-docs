@@ -6,16 +6,22 @@ tagline: 轻量级的 Vue SSR 库
 actionText: 快速开始 →
 actionLink: /guide/
 features:
-- title: 简单
-  details: 新老项目，开箱即用
-- title: 多实例
-  details: 一个页面可以由多个 Vue 实例组成
+- title: 微前端
+  details: 与技术栈无关，能被不同的技术调用页面
+- title: 微服务
+  details: 将不同的页面模块，拆分成多个服务，由聚合服务组装成完整的页面
 - title: 远程组件
-  details: 输出 json，提供 API 给其它页面使用
+  details: 支持在服务端、客户端使用其它服务的组件
+- title: 降级渲染
+  details: SSR 渲染失败，降低到 CSR 渲染
+- title: SEO
+  details: 使用 vue-meta 管理 SEO 信息
+- title: 轻量级
+  details: 核心库只专注于做 SSR 的渲染
 footer: Genesis 因 Followme 5.0 而诞生
 ---
 ::: warning 注意
-本项目还在编写测试用例和文档中，API可能还会有所变动，在测试期间请使用最新版本测试。
+文档还在完善中，但项目已经趋于成熟，可以在生产环境中使用。
 ::: 
 ::: tip 如果有一天
 你写的页面，也可以提供 `API` 接口，让所有的前端页面调用，你会喜欢吗？
