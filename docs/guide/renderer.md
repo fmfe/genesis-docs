@@ -197,7 +197,7 @@ export default async (context: RenderContext): Promise<Vue> => {
     const router = await createRouter(mode);
     // 设置渲染的地址
     await router.push(context.data.url);
-
+    // 创建 Vue 实例
     return new Vue({
         // 传入路由对象
         router,
@@ -222,6 +222,7 @@ export default async (clientOptions: ClientOptions): Promise<Vue> => {
     const router = await createRouter(mode);
     // 设置渲染的地址
     await router.push(clientOptions.url);
+    // 创建 Vue 实例
     return new Vue({
         // 传入路由对象
         router,
