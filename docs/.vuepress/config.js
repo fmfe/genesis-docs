@@ -26,7 +26,7 @@ module.exports = {
           collapsable: false,
           children: [
             '/guide/',
-            '/guide/introduce',
+            '/guide/introduce'
           ]
         },
         {
@@ -34,7 +34,11 @@ module.exports = {
           path: '/guide/',
           collapsable: false,
           children: [
+            '/guide/renderer',
+            '/guide/micro-frontend',
+            '/guide/micro-service',
             '/guide/remote',
+            '/guide/webpack',
           ]
         }
       ]
