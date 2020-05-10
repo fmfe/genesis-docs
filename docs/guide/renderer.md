@@ -13,7 +13,6 @@
 ## 创建一个渲染器
 ### 开发环境
 ```typescript
-// 开发环境
 import { SSR } from '@fmfe/genesis-core';
 import { Watch } from '@fmfe/genesis-compiler';
 
@@ -22,10 +21,11 @@ const start = async () => {
     const watch = new Watch(ssr);
     await watch.start();
     const renderer = watch.renderer;
-    // ....
-}
+    // 拿到渲染器之后，做点什么 ....
+};
 
 start();
+
 ```
 如果你是项目是第一次创建，程序将会自动在项目根目录创建 Vue 基本的模板。
 ```
@@ -61,9 +61,10 @@ const start = () => {
     const ssr = new SSR();
     const build = new Build(ssr);
     return build.start();
-}
+};
 
 start();
+
 ```
 ::: warning 注意
 在这里你需要把环境变量 `NODE_ENV` 设置为 `production`，否则编译出来的是开发模式下的代码，运行时的性能会非常差。
@@ -71,11 +72,11 @@ start();
 ```bash
 NODE_ENV=production ts-node index.ts
 ```
-执行上面的编译命令后，我们将会得到一个 `dist` 目录，里面放置了我们编译后的代码。
+执行上面的编译命令后，我们将会得到一个 `dist` 目录，里面放置了我们编译后的代码。如果你想更改编译输出的地址，或者应用名称，可以[点击这里](/core/#ssr-选项)了解更多
 ```
 .
 ├── dist
-│   ├── ssr-genesis                           服务名称，如果你没有指定，默认是 ssr-genesis
+│   ├── ssr-genesis                           应用名称
 │   │   ├── client                            客户端资源文件
 │   │   |   ├── js                            脚本
 │   │   |   ├── css                           样式
@@ -89,3 +90,155 @@ NODE_ENV=production ts-node index.ts
 └── package.json
 
 ```
+代码构建完成后，我们就可以在生产环境中直接创建一个渲染器了。
+```typescript
+import { SSR } from '@fmfe/genesis-core';
+
+const start = async () => {
+    const ssr = new SSR();
+    const renderer = ssr.createRenderer();
+    // 拿到渲染器之后，做点什么 ....
+};
+
+start();
+```
+
+## 渲染器的使用
+至此，不管是开发环境还是生产环境，我们都已经拿到了渲染器，接下来我们可以使用渲染器去做一些事情了。
+### 渲染方法
+```typescript
+renderer.render().then((result) => {
+    console.log(result.data);
+});
+```
+在默认的情况下，等同于下面的
+```typescript
+renderer.render({ url: '/', mode: 'ssr-html' }).then((result) => {
+    console.log(result.data);
+});
+```
+关于渲染方法的更多选项，[点击这里了解](/core/#renderer-选项)
+`renderer.render` 方法是渲染器最底层的方法，下面的功能都是基于它来进行封装的。
+### 渲染中间件
+如果你的业务比较简单，可以直接通过我们的中间件进行快速的开发，它只是一个简单的 `SSR` 中间件。
+::: warning 注意
+如果 SSR 渲染失败，该中间件不会帮你降级渲染到 CSR
+:::
+```typescript
+app.use(renderer.renderMiddleware);
+```
+### 渲染 HTML
+```typescript
+const result = await renderer.renderHtml();
+console.log(result);
+```
+### 渲染 JSON
+```typescript
+const result = await renderer.renderJson();
+console.log(result);
+```
+
+### 降级渲染
+为了更好的用户体验，在SSR渲染失败的时候，我们期望它可以降级渲染到 CSR 模式，我们可以对渲染的方法包装一层，并且打印出错误信息。甚至可以通过一些监控工具，推送到你的邮箱、短信进行报警。
+```typescript
+const render = (options: RenderOptions = { mode: 'ssr-html' }) => {
+    return renderer.render(options).catch((err: Error) => {
+        // 打印渲染失败的错误信息
+        console.error(err);
+        return renderer.render({
+            ...options,
+            mode: options.mode?.indexOf('html') ? 'csr-html' : 'csr-json'
+        });
+    });
+};
+const result = await render();
+console.log(result.data);
+```
+
+### 使用路由
+调用渲染函数时，传入要渲染的地址和路由的模式，因为在使用远程组件的时候，我们可能不太希望这个组件使用历史模式渲染，也可能使用 `abstract` 模式渲染，可以最好将它做成动态的参数来控制。
+```typescript
+const result = await render({ url: '/', state: { routerMode: 'history' } });
+console.log(result.data);
+```
+::: warning 注意
+vue-router 不支持一个页面上创建多个历史模式的路由实例，否则你调用 `router.push()` 方法时，将会创建多个历史记录，为了解决这个问题，请使用 [genesis-app](/app/) 的路由
+:::
+#### router.ts
+新增路由的配置文件
+```typescript
+import Vue from 'vue';
+import Router, { RouterMode } from 'vue-router';
+
+Vue.use(Router);
+
+export const createRouter = (mode: RouterMode = 'history') => {
+    return new Router({
+        mode: mode,
+        routes: [
+            // 配置你的路由
+        ]
+    });
+};
+
+```
+#### entry-server.ts
+修改我们的服务端入口文件
+```typescript
+import { RenderContext } from '@fmfe/genesis-core';
+import Vue from 'vue';
+import App from './app.vue';
+import { createRouter } from './router';
+
+export default async (context: RenderContext): Promise<Vue> => {
+    // 读取传过来的路由模式
+    const mode = context.data.state.routerMode;
+    const router = await createRouter(mode);
+    // 设置渲染的地址
+    await router.push(context.data.url);
+
+    return new Vue({
+        // 传入路由对象
+        router,
+        render(h) {
+            return h(App);
+        }
+    });
+};
+```
+#### entry-client.ts
+修改我们的客户端入口文件
+```typescript
+import { ClientOptions } from '@fmfe/genesis-core';
+import Vue from 'vue';
+import App from './app.vue';
+import { createRouter } from './router';
+
+export default async (clientOptions: ClientOptions): Promise<Vue> => {
+    // 读取服务端下发的路由模式
+    const mode = clientOptions.state.routerMode;
+    const router = await createRouter(mode);
+    // 设置渲染的地址
+    await router.push(clientOptions.url);
+    return new Vue({
+        // 传入路由对象
+        router,
+        render(h) {
+            return h(App);
+        }
+    });
+};
+
+```
+#### app.vue
+修改我们的视图文件，以便支持路由渲染
+```vue
+<template>
+    <div class="app">
+        <router-view></router-view>
+    </div>
+</template>
+```
+
+## 总结
+上述的教程，教你学会了一些基本的渲染器的使用，有了它，你可以和各种服务端框架配合使用了。

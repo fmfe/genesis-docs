@@ -241,6 +241,8 @@ app.use(
 app.use(renderer.renderMiddleware());
 
 ```
+## Renderer 选项
+- 等待编写
 ## Renderer 属性
 ### renderer.ssr
 说明：当前的SSR实例
