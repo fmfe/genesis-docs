@@ -6,10 +6,7 @@ sidebar: auto
 
 ## 安装
 ```bash
-# npm
 npm install @fmfe/genesis-app -D
-# yarn
-yarn add @fmfe/genesis-app -D
 ```
 
 ## 使用

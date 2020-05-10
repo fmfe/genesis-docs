@@ -23,53 +23,6 @@ footer: Genesis 因 Followme 5.0 而诞生
 ::: warning 注意
 文档还在完善中，但项目已经趋于成熟，可以在生产环境中使用。
 ::: 
-::: tip 如果有一天
-你写的页面，也可以提供 `API` 接口，让所有的前端页面调用，你会喜欢吗？
-:::
-
-```typescript
-import express from 'express';
-import { SSR } from '@fmfe/genesis-core';
-
-const app = express();
-const ssr = new SSR();
-const renderer = ssr.createRenderer();
-// 提供一个API使用
-app.get('/api/header', (req, res, next) => {
-    const url =
-        typeof req.query.renderUrl === 'string' ? req.query.renderUrl : '/';
-    renderer
-        .renderJson({ req, res, url })
-        .then((r) => {
-            res.send(r.data);
-        })
-        .catch(next);
-});
-
-```
-```vue
-<template>
-    <div class="app">
-        <!-- 其它的服务或 CSR 的老项目，也可以这样直接调用 -->
-        <remote-view :fetch="fetch" />
-    </div>
-</template>
-<script>
-import axios from 'axios';
-
-export default {
-  methods: {
-    fetch () {
-      const res = await axios.get('/api/header');
-      if (res.status === 200) {
-        return res.data;
-      }
-      return null;
-    }
-  }
-}
-</script>
-```
 ## 团队成员
 [@lzxb](https://www.followme.com/user/203489)    
 [@zhgh](https://www.followme.cn/user/229620/zone)    

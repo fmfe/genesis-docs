@@ -6,10 +6,7 @@ sidebar: auto
 
 ## 安装
 ```bash
-# npm
 npm install @fmfe/genesis-compiler -D
-# yarn
-yarn add @fmfe/genesis-compiler -D
 ```
 
 ## Build 属性

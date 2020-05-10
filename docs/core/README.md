@@ -6,10 +6,7 @@ sidebar: auto
 
 ## 安装
 ```bash
-# npm
 npm install @fmfe/genesis-core
-# yarn
-yarn add @fmfe/genesis-core
 ```
 
 ## SSR 选项
