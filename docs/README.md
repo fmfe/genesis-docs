@@ -23,6 +23,10 @@ footer: Genesis 因 Followme 5.0 而诞生
 ::: warning 注意
 文档还在完善中，但项目已经趋于成熟，可以在生产环境中使用。
 ::: 
+
+## 常用链接
+- [从零搭建一个 Vue SSR 的项目](./guide/)
+
 ## 团队成员
 [@lzxb](https://www.followme.com/user/203489)    
 [@zhgh](https://www.followme.cn/user/229620/zone)    
