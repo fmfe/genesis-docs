@@ -162,10 +162,13 @@ const result = await render({ url: '/', state: { routerMode: 'history' } });
 console.log(result.data);
 ```
 ::: warning 注意
-vue-router 不支持一个页面上创建多个历史模式的路由实例，否则你调用 `router.push()` 方法时，将会创建多个历史记录，为了解决这个问题，请使用 [genesis-app](/app/) 的路由
+[vue-router](https://router.vuejs.org/zh/) 不支持一个页面上创建多个历史模式的路由实例，否则你调用 `router.push()` 方法时，将会创建多个历史记录，为了解决这个问题，请使用 [genesis-app](/app/) 的路由
 :::
 #### router.ts
-新增路由的配置文件
+新增路由的配置文件，更多了解[请点击这里](https://router.vuejs.org/zh/)
+```
+npm install vue-router
+```
 ```typescript
 import Vue from 'vue';
 import Router, { RouterMode } from 'vue-router';
@@ -190,17 +193,18 @@ import Vue from 'vue';
 import App from './app.vue';
 import { createRouter } from './router';
 
-export default async (context: RenderContext): Promise<Vue> => {
+export default async (renderContext: RenderContext): Promise<Vue> => {
     // 读取传过来的路由模式
-    const mode = context.data.state.routerMode;
+    const mode = renderContext.data.state.routerMode;
     // 创建路由
     const router = await createRouter(mode);
     // 设置渲染的地址
-    await router.push(context.data.url);
+    await router.push(renderContext.data.url);
     // 创建 Vue 实例
     return new Vue({
         // 传入路由对象
         router,
+        renderContext,
         render(h) {
             return h(App);
         }
@@ -226,6 +230,7 @@ export default async (clientOptions: ClientOptions): Promise<Vue> => {
     return new Vue({
         // 传入路由对象
         router,
+        clientOptions,
         render(h) {
             return h(App);
         }
