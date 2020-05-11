@@ -241,8 +241,6 @@ app.use(
 app.use(renderer.renderMiddleware());
 
 ```
-## Renderer 选项
-- 等待编写
 ## Renderer 属性
 ### renderer.ssr
 说明：当前的SSR实例
@@ -258,6 +256,62 @@ app.use(renderer.renderMiddleware());
 ```typescript
 renderer.hotUpdate(options?: Genesis.RendererOptions): void;
 ```
+### renderer.render
+说明：最底层的渲染方法，后面的 `renderer.renderJson`、`renderer.renderHtml`、`renderer.renderMiddleware` 都是基于它进行二次封装。    
+签名：
+```typescript
+export interface RenderOptions<
+    T extends Genesis.RenderMode = Genesis.RenderMode
+> {
+    req?: IncomingMessage;
+    res?: ServerResponse;
+    mode?: T;
+    url?: string;
+    id?: string;
+    name?: string;
+    automount?: boolean;
+    state?: {
+        [x: string]: any;
+    };
+}
+render<T extends Genesis.RenderMode = Genesis.RenderMode>(
+    options?: Genesis.RenderOptions<T>
+): Promise<Genesis.RenderResul>;
+```
+#### req
+  - 说明：当前请求体的对象
+  - 类型：`IncomingMessage`
+  - 默认值：`undefined`
+#### res
+  - 说明：当前响应体的对象
+  - 类型：`ServerResponse`
+  - 默认值：`undefined`
+#### mode
+  - 说明：使用什么渲染模式
+  - 类型：`string`
+  - 默认值：`ssr-html`
+  - 可选值：`"csr-json" | "ssr-json" | "csr-html" | "ssr-html"`
+#### url
+  - 说明：当前渲染的地址，你需要和 `vue-router` 配合使用
+  - 类型：`string`
+  - 默认值：`/`
+#### id
+  - 说明：当前渲染的id，默认由 `md5(name + url)` 生成
+  - 类型：`string`
+  - 默认值：`md5(name + url)`
+#### name
+  - 说明：当前应用的名称，如果你需要做微前端、微服务，则需要定义不同的名字
+  - 类型：`string`
+  - 默认值：`ssr-genesis`
+#### automount
+  - 说明：js加载完成后，是否自动安装应用，远程加载的时候，你可能不需要自动安装，可以将其设置为 `false`
+  - 类型：`boolean`
+  - 默认值：`true`
+#### state
+  - 说明：应用的状态，如果你需要在服务端预取数据，可以在这里存储，也可以和 vuex 配合使用。
+  - 类型：`object`
+  - 默认值：`{}`
+
 ### renderer.renderJson
 说明：渲染一个json，可以利用这个API开发出微前端应用所需的接口   
 签名：
@@ -274,14 +328,7 @@ renderHtml(
     options?: Genesis.RenderOptions<Genesis.RenderModeHtml>
 ): Promise<Genesis.RenderResultHtml>;
 ```
-### renderer.render
-说明：可以渲染成 json 或者 html，它更像是 `renderer.renderJson` 和 `renderer.renderHtml`的综合体  
-签名：
-```typescript
-render<T extends Genesis.RenderMode = Genesis.RenderMode>(
-    options?: Genesis.RenderOptions<T>
-): Promise<Genesis.RenderResul>;
-```
+
 ### renderer.renderMiddleware
 说明：渲染的中间件，只要是类似于`express`的中间件设计，都可以直接使用，你可以通过[Plugin](./plugin)的方式来调整应该渲染成json或html   
 签名：

@@ -127,7 +127,7 @@ renderer.render({ url: '/', mode: 'ssr-html' }).then((result) => {
     console.log(result.data);
 });
 ```
-关于渲染方法的更多选项，[点击这里了解](/core/#renderer-选项)
+关于渲染方法的更多选项，[点击这里了解](/core/#renderer-render)
 `renderer.render` 方法是渲染器最底层的方法，下面的功能都是基于它来进行封装的。
 ### 渲染中间件
 如果你的业务比较简单，可以直接通过我们的中间件进行快速的开发，它只是一个简单的 `SSR` 中间件。
