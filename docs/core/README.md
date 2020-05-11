@@ -337,11 +337,11 @@ class MyPlugin extends Plugin {
     /**
      * 渲染之前执行
      */
-    public renderBefore(context: Genesis.RenderContext) {}
+    public renderBefore(renderContext: Genesis.RenderContext) {}
     /**
      * 渲染之后执行
      */
-    public renderCompleted(context: Genesis.RenderContext) {}
+    public renderCompleted(renderContext: Genesis.RenderContext) {}
 }
 
 const ssr = new SSR();
@@ -369,8 +369,8 @@ class MyPlugin extends Plugin {
     /**
      * 渲染之前执行
      */
-    public renderBefore(context: Genesis.RenderContext) {
-        context.data.script +=
+    public renderBefore(renderContext: Genesis.RenderContext) {
+        renderContext.data.script +=
             '<script src="https://cdn.jsdelivr.net/npm/vue@' + require('vue').version + '" defer></script>' +
             '<script src="https://cdn.jsdelivr.net/npm/vue-router@' + require('vue-router').version + '" defer></script>' +
             '<script src="https://cdn.jsdelivr.net/npm/axios@' + require('axios').version + '" defer></script>';

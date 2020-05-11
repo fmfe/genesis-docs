@@ -46,10 +46,10 @@ import { createServerApp } from '@fmfe/genesis-app';
 import Vue from 'vue';
 import App from './app.vue';
 
-export default async (context: RenderContext): Promise<Vue> => {
+export default async (renderContext: RenderContext): Promise<Vue> => {
     return createServerApp({
         App,
-        context,
+        renderContext,
         vueOptions: {
             // 传递给 new Vue({}) 的选项
         }
