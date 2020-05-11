@@ -65,9 +65,9 @@ export default async (clientOptions: ClientOptions): Promise<Vue> => {
 import { RenderContext } from '@fmfe/genesis-core';
 import Vue from 'vue';
 
-export default async (context: RenderContext): Promise<Vue> => {
+export default async (renderContext: RenderContext): Promise<Vue> => {
     return new Vue({
-        renderContext: context
+        renderContext
     });
 };
 
