@@ -196,12 +196,12 @@ const ssr = new SSR({
 说明：服务端的映射文件的输出路径   
 默认值：`编译输出目录/应用名称/server/vue-ssr-server-bundle.json`   
 类型：`string`
-### ssr.templaceFile
-说明：ssr 和 csr 的模块入口地址[options.build.templace](#build-template)可以修改这个值      
+### ssr.templateFile
+说明：ssr 和 csr 的模块入口地址[options.build.template](#build-template)可以修改这个值      
 类型：`string`   
 默认值：`应用根目录/src/index.html`
 
-### ssr.outputTemplaceFile
+### ssr.outputTemplateFile
 说明：模板文件的输出地址   
 类型：`string`   
 默认值：`编译输出目录/应用名称/server/index.html`

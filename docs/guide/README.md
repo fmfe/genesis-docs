@@ -211,4 +211,4 @@ npm run start
 执行 `npm run dev`命令，在浏览器中访问 `http://localhost:3000`
 
 ## 例子源码
-- [vue-genesis-templace](https://github.com/fmfe/vue-genesis-templace) 一个简单的，快速开发的例子
+- [vue-genesis-template](https://github.com/fmfe/vue-genesis-template) 一个简单的，快速开发的例子
