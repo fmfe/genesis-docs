@@ -102,6 +102,16 @@ const start = async () => {
 
 start();
 ```
+生产环境，静态资源都是基于内容哈希生成的文件名，所以这里设置静态目录的时候，设置强缓存即可
+```typescript
+app.use(
+    renderer.staticPublicPath,
+    express.static(renderer.staticDir, {
+        immutable: true,
+        maxAge: '31536000000'
+    })
+);
+```
 
 ## 渲染器的使用
 至此，不管是开发环境还是生产环境，我们都已经拿到了渲染器，接下来我们可以使用渲染器去做一些事情了。
