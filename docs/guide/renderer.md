@@ -254,4 +254,4 @@ export default async (clientOptions: ClientOptions): Promise<Vue> => {
 ```
 
 ## 总结
-上述的教程，教你学会了一些基本的渲染器的使用，有了它，你可以和各种服务端框架配合使用了。
+上述的教程，教你学会了一些基本的渲染器的使用，有了它，你可以和各种服务端框架配合使用了。本教程，这里提供了一个完整的demo，[点击这里](https://github.com/fmfe/genesis-router-demo)了解更多。
