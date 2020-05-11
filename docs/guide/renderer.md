@@ -141,13 +141,14 @@ console.log(result);
 ### 降级渲染
 为了更好的用户体验，在SSR渲染失败的时候，我们期望它可以降级渲染到 CSR 模式，我们可以对渲染的方法包装一层，并且打印出错误信息。甚至可以通过一些监控工具，推送到你的邮箱、短信进行报警。
 ```typescript
-const render = (options: RenderOptions = { mode: 'ssr-html' }) => {
+const render = (options: RenderOptions = {}) => {
     return renderer.render(options).catch((err: Error) => {
         // 打印渲染失败的错误信息
         console.error(err);
+        const mode: RenderMode = options.mode || 'ssr-html';
         return renderer.render({
             ...options,
-            mode: options.mode?.indexOf('html') ? 'csr-html' : 'csr-json'
+            mode: mode.indexOf('html') ? 'csr-html' : 'csr-json'
         });
     });
 };
@@ -243,7 +244,11 @@ export default async (clientOptions: ClientOptions): Promise<Vue> => {
 ```vue
 <template>
     <div class="app">
-        <router-view></router-view>
+        <h2>你好世界！</h2>
+        <p v-if="show" @click="close" class="text">
+            {{ installed ? '在客户端应该安装成功，点击我关闭!' : '未安装' }}
+        </p>
+        <router-view />
     </div>
 </template>
 ```
