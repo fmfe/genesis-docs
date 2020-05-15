@@ -35,8 +35,7 @@ module.exports = {
           collapsable: false,
           children: [
             '/guide/renderer',
-            '/guide/micro-frontend',
-            '/guide/micro-service',
+            '/guide/micro',
             '/guide/remote',
             '/guide/webpack',
           ]
