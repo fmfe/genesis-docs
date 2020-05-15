@@ -195,7 +195,7 @@ startApp(renderer);
   "scripts": {
     "dev": "ts-node genesis.dev -p=tsconfig.json",
     "build": "rm -rf dist && NODE_ENV=production ts-node genesis.build -p=tsconfig.json",
-    "start": "NODE_ENV=production ts-node genesis.prod -p=tsconfig.json",
+    "start": "NODE_ENV=production ts-node genesis.prod -p=tsconfig.json"
   }
 }
 ```
