@@ -36,7 +36,6 @@ module.exports = {
           children: [
             '/guide/renderer',
             '/guide/micro',
-            '/guide/remote',
             '/guide/webpack',
           ]
         }
