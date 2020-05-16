@@ -17,15 +17,13 @@ features:
 - title: SEO
   details: 使用 vue-meta 管理 SEO 信息
 - title: 轻量级
-  details: 核心库只专注于做 SSR 的渲染
+  details: 只提供核心的 SSR 渲染功能
 footer: Genesis 因 Followme 5.0 而诞生
 ---
-::: warning 注意
-文档还在完善中，但项目已经趋于成熟，可以在生产环境中使用。
-::: 
 
 ## 常用链接
 - [从零搭建一个 Vue SSR 的项目](./guide/)
+- [一个简单的微前端&微服务架构的例子](https://github.com/fmfe/vue-genesis-micro)
 
 ## 团队成员
 [@lzxb](https://www.followme.com/user/203489)    
