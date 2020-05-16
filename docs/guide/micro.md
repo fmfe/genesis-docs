@@ -150,6 +150,9 @@ export default Vue.extend<Data, Methods, Computed>({
 ## 页面多路由实例
 采用了微前端架构，意味着着每个服务内部都有自己的路由，为了保证路由同步，我们提供了一个对 vue-router 包装的库，你需要从这个库来创建路由，点击[这里](../app)了解更多
 
+## 外置化依赖
+随着服务越来越多，你可能不想每个服务都打包一次 vue 库，你可能想对某些依赖进行外置，[点击这里了解](../core/#钩子说明) 
+
 ## 完整的例子
 因为文档编写篇幅有限，所以我们写了一个完整的微前端&微服务的demo，你可以通过这个 demo 进行更加深入的了解。
 - [vue-genesis-micro](https://github.com/fmfe/vue-genesis-micro)
