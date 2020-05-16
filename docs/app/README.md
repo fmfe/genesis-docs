@@ -33,6 +33,7 @@ export default async (clientOptions: ClientOptions): Promise<Vue> => {
         clientOptions,
         vueOptions: {
             // 传递给 new Vue({}) 的选项
+            // 默认将 renderContext 传递给 new Vue({ clientOptions })
         }
     });
 };
@@ -52,6 +53,7 @@ export default async (renderContext: RenderContext): Promise<Vue> => {
         renderContext,
         vueOptions: {
             // 传递给 new Vue({}) 的选项
+            // 默认将 renderContext 传递给 new Vue({ renderContext })
         }
     });
 };
