@@ -110,3 +110,4 @@ renderer.render({ url: '/', mode: 'ssr-json' }).then((r) => {
 - [FOLLOWME5.0](https://www.followme.com/c/21009745?source=genesis) 新版的策略体验   
 - [Genesis](https://github.com/fmfe/genesis) Github   
 - [Genesis](https://fmfe.github.io/genesis-docs/) 文档   
+- [文章来源地址](https://fmfe.github.io/genesis-docs/blog/followme5.0.html)
