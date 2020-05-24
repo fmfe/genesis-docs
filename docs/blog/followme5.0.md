@@ -83,7 +83,7 @@ const template: any = async (
 `fetch` 是一个异步的回调函数，你可以通过使用 axios 库来发送请求将 SSR 渲染的结果返回给 `remote-view` 组件。
 ```typescript
 renderer.render({ url: '/', mode: 'ssr-json' }).then((r) => {
-    // 编写一个借口， 将 r.data 提供给 remote-view 组件访问
+    // 编写一个接口， 将 r.data 提供给 remote-view 组件访问
 });
 ```
 
