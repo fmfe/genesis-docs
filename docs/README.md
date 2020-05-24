@@ -23,7 +23,7 @@ footer: Genesis 因 Followme 5.0 而诞生
 
 ## 常用链接
 - [从零搭建一个 Vue SSR 的项目](./guide/)
-- [一个简单的微前端&微服务架构的例子](https://github.com/fmfe/vue-genesis-micro)
+- [一个简单的微架构的例子](https://github.com/fmfe/vue-genesis-micro)
 
 ## 团队成员
 [@lzxb](https://www.followme.com/user/203489)    

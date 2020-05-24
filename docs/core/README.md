@@ -26,6 +26,28 @@ const ssr = new SSR({
     name: 'ssr-demo'
 });
 ```
+### isProd
+  - 说明：设置程序的运行模式
+  - 类型：`boolean`
+  - 默认值：`process.env.NODE_ENV === 'production'`
+  - 例子：
+```typescript
+const ssr = new SSR({
+    isProd: process.env.NODE_ENV === 'production'
+});
+```
+### cdnPublicPath
+  - 说明：所有的静态资源，如果要添加 CDN 地址，直接在这里添加即可，仅在生产环境有效
+  - 类型：`string`
+  - 默认值：``
+  - 例子：
+```typescript
+const ssr = new SSR({
+    cdnPublicPath: '//cdn.xxx.com'
+});
+```
+
+ 
 ### build.baseDir
   - 说明：应用的根目录：在此基础上获取对应的 `src` 和 `dist`目录
   - 类型：`string`
@@ -248,6 +270,17 @@ app.use(renderer.renderMiddleware());
 说明：静态资源文件的基本路径，等同于`ssr.publicPath`，在生产环境的时候会使用到
 ### renderer.staticDir
 说明：静态资源文件所在的目录地址，等同于`ssr.staticDir`，在生产环境的时候会使用到  
+### renderer.clientManifest
+说明：客户端的文件清单，如果你需要做 PWA 的时候，可以拿到客户端所有的资源清单，进行预加载
+```typescript
+export interface ClientManifest {
+    publicPath: string;
+    all: string[];
+    initial: string[];
+    async: string[];
+    modules: { [key: string]: number[] };
+}
+```
 
 ## Renderer 方法
 ### renderer.hotUpdate

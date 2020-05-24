@@ -6,6 +6,7 @@ sidebar: auto
 
 ## 安装
 ```bash
+npm install vue-router
 npm install @fmfe/genesis-app -D
 ```
 
