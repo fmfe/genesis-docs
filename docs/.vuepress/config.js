@@ -38,6 +38,14 @@ module.exports = {
             '/guide/micro',
             '/guide/webpack',
           ]
+        },
+        {
+          title: '官方博客',
+          path: '/blog/',
+          collapsable: false,
+          children: [
+            '/blog/followme5.0'
+          ]
         }
       ]
     }
