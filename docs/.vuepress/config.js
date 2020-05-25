@@ -1,6 +1,7 @@
 module.exports = {
     base: '/genesis-docs/',
-    title: 'Genesis',
+    title: 'Vue Genesis',
+    description: '基于 Vue SSR 的微前端、微服务、轻量级的解决方案',
     themeConfig: {
       repo: 'fmfe/genesis',
       repoLabel: 'Github',
