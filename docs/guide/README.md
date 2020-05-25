@@ -38,7 +38,7 @@ npm install express
 └── package.json
 ```
 ### genesis.ts
-```typescript
+```ts
 import express from 'express';
 import { SSR, Renderer } from '@fmfe/genesis-core';
 
@@ -69,7 +69,7 @@ export const startApp = (renderer: Renderer) => {
 ```
 开发环境和生产环境，共同的启动逻辑
 ### genesis.build.ts
-```typescript
+```ts
 import { Build } from '@fmfe/genesis-compiler';
 import { ssr } from './genesis';
 
@@ -87,7 +87,7 @@ start();
 ```
 编译生产环境所需的代码
 ### genesis.dev.ts
-```typescript
+```ts
 import { Watch } from '@fmfe/genesis-compiler';
 import { ssr, app, startApp } from './genesis';
 
@@ -122,7 +122,7 @@ start();
 ```
 开发环境，程序的启动入口
 ### genesis.prod.ts
-```typescript
+```ts
 import express from 'express';
 import { ssr, app, startApp } from './genesis';
 

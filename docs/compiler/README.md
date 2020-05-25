@@ -16,17 +16,17 @@ npm install @fmfe/genesis-compiler -D
 ### build.start
 说明：开始执行编译   
 签名：
-```typescript
+```ts
 build.start(): Promise<[boolean, boolean]>;
 ```
 ### build.destroy
 说明：取消编译，释放内存   
 签名：
-```typescript
+```ts
 build.destroy(): Promise<void>;
 ```
 ## Build 例子
-```typescript
+```ts
 import { Build } from '@fmfe/genesis-compiler';
 import { SSR } from '@fmfe/genesis-core'
 
@@ -50,17 +50,17 @@ export default start();
 ### build.start
 说明：开始执行编译，你必须执行完成该方法后才能读取 `renderer` 属性，否则会程序会报错   
 签名：
-```typescript
+```ts
 watch.start(): Promise<void>;
 ```
 ### build.destroy
 说明：取消编译，释放内存   
 签名：
-```typescript
+```ts
 watch.destroy(): Promise<void>;
 ```
 ## Watch 综合例子
-```typescript
+```ts
 import express from 'express';
 import { SSR } from '@fmfe/genesis-core';
 import { Watch } from '@fmfe/genesis-compiler';
@@ -87,7 +87,7 @@ start();
 ### genesis.register
 说明：注册一个应用，js 加载完成后，程序会自动注册，实际上就是 `src/entry-client` 文件 `export default` 导出的方法   
 签名：
-```typescript
+```ts
 window.genesis.register(
     name: string,
     createApp: (options: Genesis.ClientOptions) => Promise<Vue>
@@ -96,12 +96,12 @@ window.genesis.register(
 ### genesis.install
 说明：安装一个应用，将会返回一个 `appId`给你，你可以调用 `uninstall` 强制卸载应用   
 签名：
-```typescript
+```ts
 window.genesis.install(options: Genesis.ClientOptions): number;
 ```
 ### genesis.uninstall
 说明：强制卸载应用，一般来说，你都不需要调用这个方法，程序会在 Vue 实例销毁时，自动卸载   
 签名：
-```typescript
+```ts
 window.genesis.uninstall(appId: number): Promise<void>;
 ```

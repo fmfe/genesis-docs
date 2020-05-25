@@ -12,7 +12,7 @@
 
 ## 创建一个渲染器
 ### 开发环境
-```typescript
+```ts
 import { SSR } from '@fmfe/genesis-core';
 import { Watch } from '@fmfe/genesis-compiler';
 
@@ -39,7 +39,7 @@ start();
 └── package.json
 ```
 因为在实际的开发环境中，我们还需要静态资源的文件和热更新，`watch` 对象还提供了对应的中间件使用，如果你使用 `Express` 框架，可以直接使用
-```typescript
+```ts
 /**
  * 静态资源中间件
  */
@@ -53,7 +53,7 @@ app.use(watch.hotMiddleware);
 
 ### 生产环境
 开发完成后，需要发布产环境，我们总是需要将代码提前编译好，这样用户访问的时候，就可以立马快速的渲染，所以第一步我们需要先编译代码
-```typescript
+```ts
 import { SSR } from '@fmfe/genesis-core';
 import { Build } from '@fmfe/genesis-compiler';
 
@@ -91,7 +91,7 @@ NODE_ENV=production ts-node index.ts
 
 ```
 代码构建完成后，我们就可以在生产环境中直接创建一个渲染器了。
-```typescript
+```ts
 import { SSR } from '@fmfe/genesis-core';
 
 const start = async () => {
@@ -103,7 +103,7 @@ const start = async () => {
 start();
 ```
 生产环境，静态资源都是基于内容哈希生成的文件名，所以这里设置静态目录的时候，设置强缓存即可
-```typescript
+```ts
 app.use(
     renderer.staticPublicPath,
     express.static(renderer.staticDir, {
@@ -116,13 +116,13 @@ app.use(
 ## 渲染器的使用
 至此，不管是开发环境还是生产环境，我们都已经拿到了渲染器，接下来我们可以使用渲染器去做一些事情了。
 ### 渲染方法
-```typescript
+```ts
 renderer.render().then((result) => {
     console.log(result.data);
 });
 ```
 在默认的情况下，等同于下面的
-```typescript
+```ts
 renderer.render({ url: '/', mode: 'ssr-html' }).then((result) => {
     console.log(result.data);
 });
@@ -134,23 +134,23 @@ renderer.render({ url: '/', mode: 'ssr-html' }).then((result) => {
 ::: warning 注意
 如果 SSR 渲染失败，该中间件不会帮你降级渲染到 CSR
 :::
-```typescript
+```ts
 app.use(renderer.renderMiddleware);
 ```
 ### 渲染 HTML
-```typescript
+```ts
 const result = await renderer.renderHtml();
 console.log(result);
 ```
 ### 渲染 JSON
-```typescript
+```ts
 const result = await renderer.renderJson();
 console.log(result);
 ```
 
 ### 降级渲染
 为了更好的用户体验，在SSR渲染失败的时候，我们期望它可以降级渲染到 CSR 模式，我们可以对渲染的方法包装一层，并且打印出错误信息。甚至可以通过一些监控工具，推送到你的邮箱、短信进行报警。
-```typescript
+```ts
 const render = (options: RenderOptions = {}) => {
     return renderer.render(options).catch((err: Error) => {
         // 打印渲染失败的错误信息
@@ -168,7 +168,7 @@ console.log(result.data);
 
 ### 使用路由
 调用渲染函数时，传入要渲染的地址和路由的模式，因为在使用远程组件的时候，我们可能不太希望这个组件使用历史模式渲染，也可能使用 `abstract` 模式渲染，可以最好将它做成动态的参数来控制。
-```typescript
+```ts
 const result = await render({ url: '/', state: { routerMode: 'history' } });
 console.log(result.data);
 ```
@@ -180,7 +180,7 @@ console.log(result.data);
 ```
 npm install vue-router
 ```
-```typescript
+```ts
 import Vue from 'vue';
 import Router, { RouterMode } from 'vue-router';
 
@@ -198,7 +198,7 @@ export const createRouter = (mode: RouterMode = 'history') => {
 ```
 #### entry-server.ts
 修改我们的服务端入口文件
-```typescript
+```ts
 import { RenderContext } from '@fmfe/genesis-core';
 import Vue from 'vue';
 import App from './app.vue';
@@ -224,7 +224,7 @@ export default async (renderContext: RenderContext): Promise<Vue> => {
 ```
 #### entry-client.ts
 修改我们的客户端入口文件
-```typescript
+```ts
 import { ClientOptions } from '@fmfe/genesis-core';
 import Vue from 'vue';
 import App from './app.vue';

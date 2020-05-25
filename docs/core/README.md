@@ -10,7 +10,7 @@ npm install @fmfe/genesis-core
 ```
 
 ## SSR 选项
-```typescript
+```ts
 import { SSR } from '@fmfe/genesis-core';
 const ssr = new SSR({
     // 选项
@@ -21,7 +21,7 @@ const ssr = new SSR({
   - 类型：`string`
   - 默认值：`ssr-genesis`
   - 例子：
-```typescript
+```ts
 const ssr = new SSR({
     name: 'ssr-demo'
 });
@@ -31,7 +31,7 @@ const ssr = new SSR({
   - 类型：`boolean`
   - 默认值：`process.env.NODE_ENV === 'production'`
   - 例子：
-```typescript
+```ts
 const ssr = new SSR({
     isProd: process.env.NODE_ENV === 'production'
 });
@@ -41,7 +41,7 @@ const ssr = new SSR({
   - 类型：`string`
   - 默认值：``
   - 例子：
-```typescript
+```ts
 const ssr = new SSR({
     cdnPublicPath: '//cdn.xxx.com'
 });
@@ -53,7 +53,7 @@ const ssr = new SSR({
   - 类型：`string`
   - 默认值：`path.resolve()`
   - 例子：
-```typescript
+```ts
 const ssr = new SSR({
     build: {
         baseDir: path.resolve(__dirname, './')
@@ -65,7 +65,7 @@ const ssr = new SSR({
   - 类型：`string`
   - 默认值：`应用根目录/dist/`
   - 例子：
-```typescript
+```ts
 const ssr = new SSR({
     build: {
         outputDir: path.resolve(__dirname, './dist')
@@ -77,7 +77,7 @@ const ssr = new SSR({
   - 类型：`string`
   - 默认值：`[]`
   - 例子：
-```typescript
+```ts
 const ssr = new SSR({
     build: {
         transpile: [/src/]
@@ -89,7 +89,7 @@ const ssr = new SSR({
   - 说明：webpack的别名设置
   - 类型：`{[x: string]: string}`
   - 默认值：`{}`
-```typescript
+```ts
 const ssr = new SSR({
     build: {
         alias: {
@@ -105,14 +105,14 @@ const ssr = new SSR({
         server?: string | string[];
     }`
   - 默认值：
-```typescript
+```ts
 {
     client: ['ie >= 9', 'ios >= 5', 'android >= 4.0'],
     server: [`node >= ${process.versions.node}`]
 }
 ```
 例子：
-```typescript
+```ts
 import process from 'process';
 
 const ssr = new SSR({
@@ -146,7 +146,7 @@ const ssr = new SSR({
 </html>
 ```
 例子：
-```typescript
+```ts
 import path from 'path';
 
 const ssr = new SSR({
@@ -156,7 +156,7 @@ const ssr = new SSR({
 });
 ```
 ## SSR 属性
-```typescript
+```ts
 import { SSR } from '@fmfe/genesis-core';
 
 const ssr = new SSR({
@@ -232,22 +232,22 @@ const ssr = new SSR({
 ### ssr.getBrowsers
 说明：获取 browsers 的配置   
 签名：
-```typescript
+```ts
 ssr.getBrowsers(env: keyof Genesis.Browsers): Genesis.Browserslist;
 ```
 例子：
-```typescript
+```ts
 ssr.getBrowsers('client');
 ssr.getBrowsers('server');
 ```
 ### ssr.createRenderer
 说明：创建一个SSR的渲染器，一般来说，你会在生产环境中使用   
 签名：
-```typescript
+```ts
 ssr.createRenderer(options?: Genesis.RendererOptions): Renderer;
 ```
 例子：
-```typescript
+```ts
 const renderer = ssr.createRenderer();
 const app = express();
 
@@ -272,7 +272,7 @@ app.use(renderer.renderMiddleware());
 说明：静态资源文件所在的目录地址，等同于`ssr.staticDir`，在生产环境的时候会使用到  
 ### renderer.clientManifest
 说明：客户端的文件清单，如果你需要做 PWA 的时候，可以拿到客户端所有的资源清单，进行预加载
-```typescript
+```ts
 export interface ClientManifest {
     publicPath: string;
     all: string[];
@@ -286,13 +286,13 @@ export interface ClientManifest {
 ### renderer.hotUpdate
 说明：热更新接口，一般来说只作为开发环境的热更新使用   
 签名：
-```typescript
+```ts
 renderer.hotUpdate(options?: Genesis.RendererOptions): void;
 ```
 ### renderer.render
 说明：最底层的渲染方法，后面的 `renderer.renderJson`、`renderer.renderHtml`、`renderer.renderMiddleware` 都是基于它进行二次封装。    
 签名：
-```typescript
+```ts
 export interface RenderOptions<
     T extends Genesis.RenderMode = Genesis.RenderMode
 > {
@@ -348,7 +348,7 @@ render<T extends Genesis.RenderMode = Genesis.RenderMode>(
 ### renderer.renderJson
 说明：渲染一个json，可以利用这个API开发出微前端应用所需的接口   
 签名：
-```typescript
+```ts
 renderJson(
     options?: Genesis.RenderOptions<Genesis.RenderModeJson>
 ): Promise<Genesis.RenderResultJson>;
@@ -356,7 +356,7 @@ renderJson(
 ### renderer.renderHtml
 说明：渲染一个html  
 签名：
-```typescript
+```ts
 renderHtml(
     options?: Genesis.RenderOptions<Genesis.RenderModeHtml>
 ): Promise<Genesis.RenderResultHtml>;
@@ -365,7 +365,7 @@ renderHtml(
 ### renderer.renderMiddleware
 说明：渲染的中间件，只要是类似于`express`的中间件设计，都可以直接使用，你可以通过[Plugin](./plugin)的方式来调整应该渲染成json或html   
 签名：
-```typescript
+```ts
 renderMiddleware(
     req: IncomingMessage,
     res: ServerResponse,
@@ -375,7 +375,7 @@ renderMiddleware(
 ## Renderer 例子
 ### 生成 HTML
 说明：下面举了一个生成静态html的例子
-```typescript
+```ts
 import { IncomingMessage, ServerResponse } from 'http';
 import { Socket } from 'net';
 import { SSR } from '@fmfe/genesis-core';
@@ -397,7 +397,7 @@ render('/home').then((res) => {
 ```
 ## Plugin 插件
 ### 钩子说明
-```typescript
+```ts
 import { SSR, Plugin } from '@fmfe/genesis-core';
 
 class MyPlugin extends Plugin {
@@ -431,7 +431,7 @@ ssr.plugin.use(new MyPlugin(ssr));
 
 ### 外置化依赖
 说明：如果你正在开发大型的应用，需要提供远程组件加载，避免项目与项目之间重复加载同样的内容，那么外置化依赖是必不可少的
-```typescript
+```ts
 class MyPlugin extends Plugin {
     /**
      * 修改webpack的配置

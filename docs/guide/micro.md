@@ -7,7 +7,7 @@
 - 从服务架构上看，分为聚合服务和子服务，所有的请求都会进入到聚合服务，根据不同的url地址去请求对应的子服务
 
 ## 提供服务的渲染接口
-```typescript
+```ts
     const renderModes = ['ssr-html', 'ssr-json', 'csr-html', 'csr-json'];
     /**
      * 提供一个API允许外部渲染

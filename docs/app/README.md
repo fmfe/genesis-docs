@@ -12,7 +12,7 @@ npm install @fmfe/genesis-app -D
 
 ## 使用
 ### 路由配置
-```typescript
+```ts
 // import VueRouter from 'vue-router';
 import { Router } from '@fmfe/genesis-app';
 const router = new Router({
@@ -21,7 +21,7 @@ const router = new Router({
 ```
 只需要将 [VueRouter](https://github.com/vuejs/vue-router) 修改成 `@fmfe/genesis-app` 的 Router 即可，其它的还是和 [VueRouter](https://github.com/vuejs/vue-router) 的使用方式一样
 ### 客户端使用
-```typescript
+```ts
 // entry-client.ts
 import { ClientOptions } from '@fmfe/genesis-core';
 import { createClientApp } from '@fmfe/genesis-app';
@@ -41,7 +41,7 @@ export default async (clientOptions: ClientOptions): Promise<Vue> => {
 
 ```
 ### 服务端
-```typescript
+```ts
 // entry-server.ts
 import { RenderContext } from '@fmfe/genesis-core';
 import { createServerApp } from '@fmfe/genesis-app';

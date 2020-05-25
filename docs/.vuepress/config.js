@@ -44,7 +44,8 @@ module.exports = {
           path: '/blog/',
           collapsable: false,
           children: [
-            '/blog/followme5.0'
+            '/blog/followme5.0',
+            '/blog/2020-05-25'
           ]
         }
       ]

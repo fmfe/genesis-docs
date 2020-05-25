@@ -22,7 +22,7 @@
 
 在这里的理念下， 它没有像 Nuxt.js `nuxt.config.js` 这样直接读取一个配置开始运行，给你集成了各种各样的功能，它仅仅一个基础到不能再基础的渲染工具函数
 
-```typescript
+```ts
 import { SSR } from '@fmfe/genesis-core';
 
 const ssr = new SSR();
@@ -36,11 +36,11 @@ renderer.render({ url: '/' });
     
     
 如果要做到微服务，并且能被不同的服务之间调用，首先就需要服务的自身具备将渲染结果输出 `JSON` 的能力，然后第三方服务读取渲染结果，输出到 HTML 中
-```typescript
+```ts
 renderer.render({ url: '/', mode: 'ssr-json' });
 ```
 我们巧妙的使用了 Vue 的 `Renderer` 选项 [template](https://ssr.vuejs.org/zh/api/#template)，传入一个函数，执行完成后返回了一个 JSON 的渲染结果
-```typescript
+```ts
 const template: any = async (
     strHtml: string,
     ctx: Genesis.RenderContext
@@ -81,7 +81,7 @@ const template: any = async (
 </template>
 ```
 `fetch` 是一个异步的回调函数，你可以通过使用 axios 库来发送请求将 SSR 渲染的结果返回给 `remote-view` 组件。
-```typescript
+```ts
 renderer.render({ url: '/', mode: 'ssr-json' }).then((r) => {
     // 编写一个接口， 将 r.data 提供给 remote-view 组件访问
 });

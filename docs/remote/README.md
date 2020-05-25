@@ -8,7 +8,7 @@ sidebar: auto
 npm install @fmfe/genesis-remote -D
 ```
 ### 全局注册
-```typescript
+```ts
 import Vue from 'vue';
 import RemoteView from '@fmfe/genesis-remote';
 
@@ -16,7 +16,7 @@ Vue.use(RemoteView);
 ```
 程序将会在全局注册一个 `remote-view` 组件
 ### 局部注册
-```typescript
+```ts
 import Vue from 'vue';
 import { RemoteView } from '@fmfe/genesis-remote';
 
@@ -51,7 +51,7 @@ Vue.extend({
 </template>
 ```
 特别说明：因为在服务端加载远程组件，需要存储远程服务的数据，所以需要将对应的上下文传给 `Vue` 实例
-```typescript
+```ts
 // entry-client.ts
 import { ClientOptions } from '@fmfe/genesis-core';
 import Vue from 'vue';
@@ -74,7 +74,7 @@ export default async (renderContext: RenderContext): Promise<Vue> => {
 ```
 ## 数据结构
 在执行 `fetch`、`clientFetch`、`serverFetch` 钩子时，需要返回 `renderer.renderJson(options)` 执行的结果。所以基本的数据结构，应该是下面这样子的
-```typescript
+```ts
 export interface RemoteViewData {
     automount: boolean;
     html: string;
