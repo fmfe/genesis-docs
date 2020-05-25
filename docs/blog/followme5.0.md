@@ -110,4 +110,6 @@ renderer.render({ url: '/', mode: 'ssr-json' }).then((r) => {
 - [FOLLOWME5.0](https://www.followme.com/c/21009745?source=genesis) 新版的策略体验   
 - [Genesis](https://github.com/fmfe/genesis) Github   
 - [Genesis](https://fmfe.github.io/genesis-docs/) 文档   
+- [vue demo](https://github.com/lzxb/vue2-demo) 基于 Genesis + TS + Vuex 实现的 SSR demo   
+- [微架构demo](https://github.com/fmfe/vue-genesis-micro) 基于 Vue SSR for Genesis 框架的微前端&微服务的例子    
 - [文章来源地址](https://fmfe.github.io/genesis-docs/blog/followme5.0.html)
