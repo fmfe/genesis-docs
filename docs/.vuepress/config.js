@@ -15,9 +15,9 @@ module.exports = {
             { text: 'genesis-compiler', link: '/compiler/' },
             { text: 'genesis-app', link: '/app/' },
             { text: 'genesis-remote', link: '/remote/' },
-            // { text: 'square', link: '/square/' },
           ]
-        }
+        },
+        { text: '官方博客', link: './followme5.0' },
       ],
       sidebar: [
         '/',
