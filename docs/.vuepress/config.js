@@ -38,6 +38,7 @@ module.exports = {
             '/guide/renderer',
             '/guide/micro',
             '/guide/webpack',
+            '/guide/seo',
           ]
         },
         {
