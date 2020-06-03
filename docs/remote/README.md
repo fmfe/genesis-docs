@@ -5,7 +5,7 @@ sidebar: auto
 这是一个基础的远程组件，当你使用 `renderer.renderJson(options)` 输出 json 的时候，你期望它能够在其它的服务上使用。如果你想更加深入的了解它是怎么工作的，[点击这里查看源码](https://github.com/fmfe/genesis/blob/master/packages/genesis-remote/src/index.ts)
 ## 安装
 ```bash
-npm install @fmfe/genesis-remote -D
+npm install @fmfe/genesis-remote
 ```
 ### 全局注册
 ```ts
