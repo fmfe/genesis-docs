@@ -407,9 +407,13 @@ class MyPlugin extends Plugin {
      */
     public beforeCompiler(type: Genesis.CompilerType) {}
     /**
-     * 修改webpack的配置
+     * 修改 webpack 的配置
      */
     public chainWebpack(config: Genesis.WebpackHookParams) {}
+    /**
+     * 修改 babel 的配置
+     */
+    public babel(config: Genesis.BabelConfig) {}
     /**
      * 编译完成之后执行
      */
