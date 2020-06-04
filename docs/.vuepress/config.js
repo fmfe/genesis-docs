@@ -17,7 +17,7 @@ module.exports = {
             { text: 'genesis-remote', link: '/remote/' },
           ]
         },
-        { text: '官方博客', link: './followme5.0' },
+        { text: '官方博客', link: '/blog/followme5.0' },
       ],
       sidebar: [
         '/',
@@ -38,7 +38,7 @@ module.exports = {
             '/guide/renderer',
             '/guide/micro',
             '/guide/webpack',
-            '/guide/seo',
+            '/guide/meta',
           ]
         },
         {
