@@ -37,8 +37,9 @@ module.exports = {
           children: [
             '/guide/renderer',
             '/guide/micro',
-            '/guide/webpack',
             '/guide/meta',
+            '/guide/webpack',
+            '/guide/babel',
           ]
         },
         {
