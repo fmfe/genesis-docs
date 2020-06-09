@@ -415,6 +415,10 @@ class MyPlugin extends Plugin {
      */
     public babel(config: Genesis.BabelConfig) {}
     /**
+     * 修改 postcss-loader 的配置
+     */
+    public postcss(config: PostcssOptions) {}
+    /**
      * 编译完成之后执行
      */
     public afterCompiler(type: Genesis.CompilerType) {}

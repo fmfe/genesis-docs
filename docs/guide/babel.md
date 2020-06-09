@@ -1,4 +1,4 @@
-## Babel
+# Babel
 程序没有提供对应的参数配置，只能以插件的形式去修改 [Babel](https://www.babeljs.cn/) 的配置。
 
 ## 编写 Babel 插件

@@ -40,6 +40,7 @@ module.exports = {
             '/guide/meta',
             '/guide/webpack',
             '/guide/babel',
+            '/guide/postcss',
           ]
         },
         {
