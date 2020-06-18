@@ -49,7 +49,8 @@ module.exports = {
           collapsable: false,
           children: [
             '/blog/followme5.0',
-            '/blog/2020-05-25'
+            '/blog/2020-05-25',
+            '/blog/2020-06-18',
           ]
         }
       ]
