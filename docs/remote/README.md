@@ -86,3 +86,24 @@ export interface RemoteViewData {
     state: { [x: string]: any };
 }
 ```
+## 完整例子
+```vue
+<template>
+    <remote-view :fetch="fetch" />
+</template>
+<script>
+export default {
+    methods: {
+        fetch () {
+            // 调用其它服务的组件
+            const res = await axios.get('/api/ssr-服务名称/render?url=/demo');
+            if (res.status === 200) {
+                return res.data;
+            }
+            return null
+        }
+    }
+}
+</script>
+
+```
