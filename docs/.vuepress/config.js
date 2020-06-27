@@ -51,6 +51,7 @@ module.exports = {
             '/blog/followme5.0',
             '/blog/2020-05-25',
             '/blog/2020-06-18',
+            '/blog/2020-06-27',
           ]
         }
       ]
