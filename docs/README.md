@@ -22,7 +22,7 @@ footer: Genesis 因 Followme 5.0 而诞生
 ---
 
 ## 架构图
-![架构图](./guide/images/renderer.jpg)
+![架构图](https://fmfe.github.io/genesis-docs/renderer.jpg)
 
 ## 常用链接
 - [从零搭建一个 Vue SSR 的项目](./guide/)
