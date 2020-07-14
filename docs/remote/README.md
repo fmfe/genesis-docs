@@ -107,3 +107,25 @@ export default {
 </script>
 
 ```
+
+## 事件通信
+可以像正常的组件那样，监听到远程组件根组件发射的事件
+```vue
+<template>
+    <remote-view :fetch="fetch" @my-event="myEvent" />
+</template>
+<script>
+export default {
+    methods: {
+        myEvent(str) {
+            console.log(str); // Hello world
+        }
+    }
+}
+</script>
+
+```
+远程组件发射事件
+```ts
+this.$root.$emit('my-event', 'Hello world');
+```
