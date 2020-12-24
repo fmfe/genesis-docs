@@ -66,7 +66,7 @@ export default async (renderContext: RenderContext): Promise<Vue> => {
 // Express 例子，对外提供远程组件
 app.use('/remote-component', async (req, res, next) => {
     const r = await renderer
-        .render({
+        .renderJson({
             // 下面的参数，你都可以通过 get 或者 post请求接收对应的参数，这里就不多作介绍
             // 具体的传参，可以去了解一下渲染器相关的API
             url: '/remote/component/my',
