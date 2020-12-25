@@ -85,7 +85,7 @@ app.use('/remote-component', async (req, res, next) => {
 import Vue from 'vue';
 import { ClientOptions } from '@fmfe/genesis-core';
 import { createClientApp, Router } from '@fmfe/genesis-app';
-import { App } from './routes';
+import App from './app.vue';
 
 export default async (clientOptions: ClientOptions): Promise<Vue> => {
     return createClientApp({
@@ -107,11 +107,10 @@ export default async (clientOptions: ClientOptions): Promise<Vue> => {
 };
 
 // entry-server.ts
-
 import Vue from 'vue';
 import { RenderContext } from '@fmfe/genesis-core';
 import { createServerApp, Router } from '@fmfe/genesis-app';
-import { App } from './routes';
+import App from './app.vue';
 
 export default async (renderContext: RenderContext): Promise<Vue> => {
     return createServerApp({
