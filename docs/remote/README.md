@@ -92,9 +92,10 @@ export interface RemoteViewData {
     <remote-view :fetch="fetch" />
 </template>
 <script>
+import axios from 'axios';
 export default {
     methods: {
-        fetch () {
+        async fetch () {
             // 调用其它服务的组件
             const res = await axios.get('/api/ssr-服务名称/render?url=/demo');
             if (res.status === 200) {
