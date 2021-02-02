@@ -23,6 +23,7 @@ npm install ts-node typescript -g
 :::
 ```bash
 npm install express
+npm install @types/express -D # 安装类型
 ```
 ## 例子实现
 下面将会实现一个最基础的 SSR 项目实例，它会使用到三个核心概念 `SSR`、`Build`、`Renderer`
