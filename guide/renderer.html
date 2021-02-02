@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>渲染器 | Vue Genesis</title>
+    <meta name="generator" content="VuePress 1.8.0">
+    
+    <meta name="description" content="基于 Vue SSR 的微前端、微服务、轻量级的解决方案">
+    
+    <link rel="preload" href="/genesis-docs/assets/css/0.styles.9716cb29.css" as="style"><link rel="preload" href="/genesis-docs/assets/js/app.022df389.js" as="script"><link rel="preload" href="/genesis-docs/assets/js/2.6651e0d9.js" as="script"><link rel="preload" href="/genesis-docs/assets/js/23.4b1e38b0.js" as="script"><link rel="prefetch" href="/genesis-docs/assets/js/10.49dc398a.js"><link rel="prefetch" href="/genesis-docs/assets/js/11.b7fc9b06.js"><link rel="prefetch" href="/genesis-docs/assets/js/12.a52de3d4.js"><link rel="prefetch" href="/genesis-docs/assets/js/13.2b514f11.js"><link rel="prefetch" href="/genesis-docs/assets/js/14.ba15514c.js"><link rel="prefetch" href="/genesis-docs/assets/js/15.1e7ac3bb.js"><link rel="prefetch" href="/genesis-docs/assets/js/16.88519e39.js"><link rel="prefetch" href="/genesis-docs/assets/js/17.ce829375.js"><link rel="prefetch" href="/genesis-docs/assets/js/18.36a8f2b4.js"><link rel="prefetch" href="/genesis-docs/assets/js/19.3c6f9150.js"><link rel="prefetch" href="/genesis-docs/assets/js/20.889364e0.js"><link rel="prefetch" href="/genesis-docs/assets/js/21.4e36b231.js"><link rel="prefetch" href="/genesis-docs/assets/js/22.31f70d4b.js"><link rel="prefetch" href="/genesis-docs/assets/js/24.d970ff37.js"><link rel="prefetch" href="/genesis-docs/assets/js/25.7467f657.js"><link rel="prefetch" href="/genesis-docs/assets/js/26.f80cc8b2.js"><link rel="prefetch" href="/genesis-docs/assets/js/3.4e60ce74.js"><link rel="prefetch" href="/genesis-docs/assets/js/4.fa8b61f4.js"><link rel="prefetch" href="/genesis-docs/assets/js/5.0d9d0dba.js"><link rel="prefetch" href="/genesis-docs/assets/js/6.06c3d24d.js"><link rel="prefetch" href="/genesis-docs/assets/js/7.6c204e70.js"><link rel="prefetch" href="/genesis-docs/assets/js/8.61a423db.js"><link rel="prefetch" href="/genesis-docs/assets/js/9.62b53333.js">
+    <link rel="stylesheet" href="/genesis-docs/assets/css/0.styles.9716cb29.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/genesis-docs/" class="home-link router-link-active"><!----> <span class="site-name">Vue Genesis</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/genesis-docs/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/genesis-docs/guide/" class="nav-link router-link-active">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="核心库" class="dropdown-title"><span class="title">核心库</span> <span class="arrow down"></span></button> <button type="button" aria-label="核心库" class="mobile-dropdown-title"><span class="title">核心库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/genesis-docs/core/" class="nav-link">
+  genesis-core
+</a></li><li class="dropdown-item"><!----> <a href="/genesis-docs/compiler/" class="nav-link">
+  genesis-compiler
+</a></li><li class="dropdown-item"><!----> <a href="/genesis-docs/app/" class="nav-link">
+  genesis-app
+</a></li><li class="dropdown-item"><!----> <a href="/genesis-docs/remote/" class="nav-link">
+  genesis-remote
+</a></li></ul></div></div><div class="nav-item"><a href="/genesis-docs/blog/followme5.0.html" class="nav-link">
+  官方博客
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="多语言" class="dropdown-title"><span class="title">多语言</span> <span class="arrow down"></span></button> <button type="button" aria-label="多语言" class="mobile-dropdown-title"><span class="title">多语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://anish2690.github.io/genesis-docs-en/" target="_self" class="nav-link external">
+  English
+  <!----></a></li><li class="dropdown-item"><!----> <a href="https://fmfe.github.io/genesis-docs/guide/" target="_self" class="nav-link external">
+  简体中文
+  <!----></a></li></ul></div></div> <a href="https://github.com/fmfe/genesis" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/genesis-docs/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/genesis-docs/guide/" class="nav-link router-link-active">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="核心库" class="dropdown-title"><span class="title">核心库</span> <span class="arrow down"></span></button> <button type="button" aria-label="核心库" class="mobile-dropdown-title"><span class="title">核心库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/genesis-docs/core/" class="nav-link">
+  genesis-core
+</a></li><li class="dropdown-item"><!----> <a href="/genesis-docs/compiler/" class="nav-link">
+  genesis-compiler
+</a></li><li class="dropdown-item"><!----> <a href="/genesis-docs/app/" class="nav-link">
+  genesis-app
+</a></li><li class="dropdown-item"><!----> <a href="/genesis-docs/remote/" class="nav-link">
+  genesis-remote
+</a></li></ul></div></div><div class="nav-item"><a href="/genesis-docs/blog/followme5.0.html" class="nav-link">
+  官方博客
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="多语言" class="dropdown-title"><span class="title">多语言</span> <span class="arrow down"></span></button> <button type="button" aria-label="多语言" class="mobile-dropdown-title"><span class="title">多语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://anish2690.github.io/genesis-docs-en/" target="_self" class="nav-link external">
+  English
+  <!----></a></li><li class="dropdown-item"><!----> <a href="https://fmfe.github.io/genesis-docs/guide/" target="_self" class="nav-link external">
+  简体中文
+  <!----></a></li></ul></div></div> <a href="https://github.com/fmfe/genesis" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/genesis-docs/" aria-current="page" class="sidebar-link">Home</a></li><li><section class="sidebar-group depth-0"><a href="/genesis-docs/guide/" class="sidebar-heading clickable router-link-active"><span>指南</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/genesis-docs/guide/introduce.html" class="sidebar-link">介绍</a></li><li><a href="/genesis-docs/guide/" aria-current="page" class="sidebar-link">快速开始</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/genesis-docs/guide/" class="sidebar-heading clickable router-link-active open"><span>进阶</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/genesis-docs/guide/renderer.html" aria-current="page" class="active sidebar-link">渲染器</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/genesis-docs/guide/renderer.html#它可以和怎样的你协作" class="sidebar-link">它可以和怎样的你协作？</a></li><li class="sidebar-sub-header"><a href="/genesis-docs/guide/renderer.html#创建一个渲染器" class="sidebar-link">创建一个渲染器</a></li><li class="sidebar-sub-header"><a href="/genesis-docs/guide/renderer.html#渲染器的使用" class="sidebar-link">渲染器的使用</a></li><li class="sidebar-sub-header"><a href="/genesis-docs/guide/renderer.html#总结" class="sidebar-link">总结</a></li></ul></li><li><a href="/genesis-docs/guide/micro.html" class="sidebar-link">微架构</a></li><li><a href="/genesis-docs/guide/meta.html" class="sidebar-link">页面元信息</a></li><li><a href="/genesis-docs/guide/webpack.html" class="sidebar-link">Webpack</a></li><li><a href="/genesis-docs/guide/babel.html" class="sidebar-link">Babel</a></li><li><a href="/genesis-docs/guide/postcss.html" class="sidebar-link">Postcss</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/genesis-docs/blog/" class="sidebar-heading clickable"><span>官方博客</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/genesis-docs/blog/followme5.0.html" class="sidebar-link">基于 Vue SSR 的微架构在 FOLLOWME5.0 实践</a></li><li><a href="/genesis-docs/blog/2020-05-25.html" class="sidebar-link">基于 Vue CSR 的微前端实现方案</a></li><li><a href="/genesis-docs/blog/2020-06-18.html" class="sidebar-link">对远程组件进一步的设计和思考</a></li><li><a href="/genesis-docs/blog/2020-06-27.html" class="sidebar-link">带你了解基于 Vue 的微服务解决方案 Genesis</a></li><li><a href="/genesis-docs/blog/2021-01-21.html" class="sidebar-link">2021基于Vue SSR的微服务&amp;微前端的解决方案Genesis的一些最佳实践</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="渲染器"><a href="#渲染器" class="header-anchor">#</a> 渲染器</h1> <p><img src="https://fmfe.github.io/genesis-docs/renderer.jpg" alt="架构图">
+在 <code>Genesis</code> 中，核心的就是渲染器，它提供了最基础渲染能力，有了它，你可以实现微前端、微服务、远程组件、首屏渲染，甚至可以和 React、EJS 等配合使用。</p> <h2 id="它可以和怎样的你协作"><a href="#它可以和怎样的你协作" class="header-anchor">#</a> 它可以和怎样的你协作？</h2> <ul><li>如果你是传统的后端渲染的，需要做SEO，但是你希望在部分布局，部分页面引入 Vue，那么 <code>renderer.renderJson()</code> 足以，将渲染结果传递给后端渲染的模板引擎中即可。</li> <li>如果你是中后台系统，业务系统全部集中在一个项目，你希望可以按照业务进行服务的拆分，那么 <code>&lt;remote-view :fetch=&quot;fetch&quot; /&gt;</code> 足以</li> <li>如果你是 CSR 渲染的项目，那么 <code>renderer.renderHtml({ mode: 'csr-html' })</code> 足以</li> <li>如果你是 SSR 渲染的项目，那么 <code>renderer.renderHtml({ mode: 'ssr-html' })</code> 足以</li></ul> <p>如果你想做微前端、微服务、那么<code>渲染器</code> 天生就具备了这样的能力，你可以把它当成一个工具函数使用，你可以通过 HTTP 、 RPC 等等各种协议访问到你的服务，然后使用它进行渲染</p> <h2 id="创建一个渲染器"><a href="#创建一个渲染器" class="header-anchor">#</a> 创建一个渲染器</h2> <h3 id="开发环境"><a href="#开发环境" class="header-anchor">#</a> 开发环境</h3> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token constant">SSR</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@fmfe/genesis-core'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Watch <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@fmfe/genesis-compiler'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">start</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> ssr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name"><span class="token constant">SSR</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> watch <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Watch</span><span class="token punctuation">(</span>ssr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">await</span> watch<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> renderer <span class="token operator">=</span> watch<span class="token punctuation">.</span>renderer<span class="token punctuation">;</span>
+    <span class="token comment">// 拿到渲染器之后，做点什么 ....</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre></div><p>如果你是项目是第一次创建，程序将会自动在项目根目录创建 Vue 基本的模板。</p> <div class="language- extra-class"><pre class="language-text"><code>.
+├── src
+│   ├── app.vue           入口的页面
+│   ├── entry-client.ts   客户端入口文件
+│   ├── entry-server.ts   服务端入口文件
+│   └── shims-vue.d.ts    vue文件的TS声明
+│ 
+└── package.json
+</code></pre></div><p>因为在实际的开发环境中，我们还需要静态资源的文件和热更新，<code>watch</code> 对象还提供了对应的中间件使用，如果你使用 <code>Express</code> 框架，可以直接使用</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token comment">/**
+ * 静态资源中间件
+ */</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>watch<span class="token punctuation">.</span>devMiddleware<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/**
+ * 热更新的中间件
+ */</span>
+app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>watch<span class="token punctuation">.</span>hotMiddleware<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>如果你使用了 Koa，或者其它的框架，就需要在对应框架上包装一层中间件使用。</p> <h3 id="生产环境"><a href="#生产环境" class="header-anchor">#</a> 生产环境</h3> <p>开发完成后，需要发布产环境，我们总是需要将代码提前编译好，这样用户访问的时候，就可以立马快速的渲染，所以第一步我们需要先编译代码</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token constant">SSR</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@fmfe/genesis-core'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Build <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@fmfe/genesis-compiler'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">start</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> ssr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name"><span class="token constant">SSR</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> build <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Build</span><span class="token punctuation">(</span>ssr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> build<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</code></pre></div><div class="custom-block warning"><p class="custom-block-title">注意</p> <p>在这里你需要把环境变量 <code>NODE_ENV</code> 设置为 <code>production</code>，否则编译出来的是开发模式下的代码，运行时的性能会非常差。</p></div> <div class="language-bash extra-class"><pre class="language-bash"><code><span class="token assign-left variable">NODE_ENV</span><span class="token operator">=</span>production ts-node index.ts
+</code></pre></div><p>执行上面的编译命令后，我们将会得到一个 <code>dist</code> 目录，里面放置了我们编译后的代码。如果你想更改编译输出的地址，或者应用名称，可以<a href="/genesis-docs/core/#ssr-选项">点击这里</a>了解更多</p> <div class="language- extra-class"><pre class="language-text"><code>.
+├── dist
+│   ├── ssr-genesis                           应用名称
+│   │   ├── client                            客户端资源文件
+│   │   |   ├── js                            脚本
+│   │   |   ├── css                           样式
+│   │   |   ├── images                        图片
+│   │   |   ├── medias                        媒体资源
+│   │   |   └── fonts                         字体文件
+│   │   ├── server                            服务端资源文件
+│   │   │   ├── vue-ssr-client-manifest.json  客户端构建清单
+│   │   │   └── vue-ssr-server-bundle.json    服务端应用包
+│ 
+└── package.json
+
+</code></pre></div><p>代码构建完成后，我们就可以在生产环境中直接创建一个渲染器了。</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> <span class="token constant">SSR</span> <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@fmfe/genesis-core'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">start</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> ssr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name"><span class="token constant">SSR</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> renderer <span class="token operator">=</span> ssr<span class="token punctuation">.</span><span class="token function">createRenderer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 拿到渲染器之后，做点什么 ....</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>生产环境，静态资源都是基于内容哈希生成的文件名，所以这里设置静态目录的时候，设置强缓存即可</p> <div class="language-ts extra-class"><pre class="language-ts"><code>app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>
+    renderer<span class="token punctuation">.</span>staticPublicPath<span class="token punctuation">,</span>
+    express<span class="token punctuation">.</span><span class="token keyword">static</span><span class="token punctuation">(</span>renderer<span class="token punctuation">.</span>staticDir<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        immutable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        maxAge<span class="token operator">:</span> <span class="token string">'31536000000'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h2 id="渲染器的使用"><a href="#渲染器的使用" class="header-anchor">#</a> 渲染器的使用</h2> <p>至此，不管是开发环境还是生产环境，我们都已经拿到了渲染器，接下来我们可以使用渲染器去做一些事情了。</p> <h3 id="渲染方法"><a href="#渲染方法" class="header-anchor">#</a> 渲染方法</h3> <div class="language-ts extra-class"><pre class="language-ts"><code>renderer<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>在默认的情况下，等同于下面的</p> <div class="language-ts extra-class"><pre class="language-ts"><code>renderer<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">{</span> url<span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span> mode<span class="token operator">:</span> <span class="token string">'ssr-html'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>关于渲染方法的更多选项，<a href="/genesis-docs/core/#renderer-render">点击这里了解</a> <code>renderer.render</code> 方法是渲染器最底层的方法，下面的功能都是基于它来进行封装的。</p> <h3 id="渲染中间件"><a href="#渲染中间件" class="header-anchor">#</a> 渲染中间件</h3> <p>如果你的业务比较简单，可以直接通过我们的中间件进行快速的开发，它只是一个简单的 <code>SSR</code> 中间件。</p> <div class="custom-block warning"><p class="custom-block-title">注意</p> <p>如果 SSR 渲染失败，该中间件不会帮你降级渲染到 CSR</p></div> <div class="language-ts extra-class"><pre class="language-ts"><code>app<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>renderer<span class="token punctuation">.</span>renderMiddleware<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="渲染-html"><a href="#渲染-html" class="header-anchor">#</a> 渲染 HTML</h3> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token keyword">await</span> renderer<span class="token punctuation">.</span><span class="token function">renderHtml</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="渲染-json"><a href="#渲染-json" class="header-anchor">#</a> 渲染 JSON</h3> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token keyword">await</span> renderer<span class="token punctuation">.</span><span class="token function">renderJson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="降级渲染"><a href="#降级渲染" class="header-anchor">#</a> 降级渲染</h3> <p>为了更好的用户体验，在SSR渲染失败的时候，我们期望它可以降级渲染到 CSR 模式，我们可以对渲染的方法包装一层，并且打印出错误信息。甚至可以通过一些监控工具，推送到你的邮箱、短信进行报警。</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">const</span> <span class="token function-variable function">render</span> <span class="token operator">=</span> <span class="token punctuation">(</span>options<span class="token operator">:</span> RenderOptions <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> renderer<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span>err<span class="token operator">:</span> Error<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 打印渲染失败的错误信息</span>
+        <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">const</span> mode<span class="token operator">:</span> RenderMode <span class="token operator">=</span> options<span class="token punctuation">.</span>mode <span class="token operator">||</span> <span class="token string">'ssr-html'</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> renderer<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            <span class="token operator">...</span>options<span class="token punctuation">,</span>
+            mode<span class="token operator">:</span> mode<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'html'</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token string">'csr-html'</span> <span class="token operator">:</span> <span class="token string">'csr-json'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="使用路由"><a href="#使用路由" class="header-anchor">#</a> 使用路由</h3> <p>调用渲染函数时，传入要渲染的地址和路由的模式，因为在使用远程组件的时候，我们可能不太希望这个组件使用历史模式渲染，也可能使用 <code>abstract</code> 模式渲染，可以最好将它做成动态的参数来控制。</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">{</span> url<span class="token operator">:</span> <span class="token string">'/'</span><span class="token punctuation">,</span> state<span class="token operator">:</span> <span class="token punctuation">{</span> routerMode<span class="token operator">:</span> <span class="token string">'history'</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><div class="custom-block warning"><p class="custom-block-title">注意</p> <p><a href="https://router.vuejs.org/zh/" target="_blank" rel="noopener noreferrer">vue-router<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 不支持一个页面上创建多个历史模式的路由实例，否则你调用 <code>router.push()</code> 方法时，将会创建多个历史记录，为了解决这个问题，请使用 <a href="/genesis-docs/app/">genesis-app</a> 的路由</p></div> <h4 id="router-ts"><a href="#router-ts" class="header-anchor">#</a> router.ts</h4> <p>新增路由的配置文件，更多了解<a href="https://router.vuejs.org/zh/" target="_blank" rel="noopener noreferrer">请点击这里<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <div class="language- extra-class"><pre class="language-text"><code>npm install vue-router
+</code></pre></div><div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Router<span class="token punctuation">,</span> <span class="token punctuation">{</span> RouterMode <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'vue-router'</span><span class="token punctuation">;</span>
+
+Vue<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>Router<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">const</span> createRouter <span class="token operator">=</span> <span class="token punctuation">(</span>mode<span class="token operator">:</span> RouterMode <span class="token operator">=</span> <span class="token string">'history'</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Router</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        mode<span class="token operator">:</span> mode<span class="token punctuation">,</span>
+        routes<span class="token operator">:</span> <span class="token punctuation">[</span>
+            <span class="token comment">// 配置你的路由</span>
+        <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+</code></pre></div><h4 id="entry-server-ts"><a href="#entry-server-ts" class="header-anchor">#</a> entry-server.ts</h4> <p>修改我们的服务端入口文件</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> RenderContext <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@fmfe/genesis-core'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./app.vue'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> createRouter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./router'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>renderContext<span class="token operator">:</span> RenderContext<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span>Vue<span class="token operator">&gt;</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 读取传过来的路由模式</span>
+    <span class="token keyword">const</span> mode <span class="token operator">=</span> renderContext<span class="token punctuation">.</span>data<span class="token punctuation">.</span>state<span class="token punctuation">.</span>routerMode<span class="token punctuation">;</span>
+    <span class="token comment">// 创建路由</span>
+    <span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">createRouter</span><span class="token punctuation">(</span>mode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 设置渲染的地址</span>
+    <span class="token keyword">await</span> router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>renderContext<span class="token punctuation">.</span>data<span class="token punctuation">.</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 创建 Vue 实例</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token comment">// 传入路由对象</span>
+        router<span class="token punctuation">,</span>
+        renderContext<span class="token punctuation">,</span>
+        <span class="token function">render</span><span class="token punctuation">(</span>h<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">h</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h4 id="entry-client-ts"><a href="#entry-client-ts" class="header-anchor">#</a> entry-client.ts</h4> <p>修改我们的客户端入口文件</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> ClientOptions <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'@fmfe/genesis-core'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> Vue <span class="token keyword">from</span> <span class="token string">'vue'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">'./app.vue'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> createRouter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'./router'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>clientOptions<span class="token operator">:</span> ClientOptions<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span>Vue<span class="token operator">&gt;</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 读取服务端下发的路由模式</span>
+    <span class="token keyword">const</span> mode <span class="token operator">=</span> clientOptions<span class="token punctuation">.</span>state<span class="token punctuation">.</span>routerMode<span class="token punctuation">;</span>
+    <span class="token comment">// 创建路由</span>
+    <span class="token keyword">const</span> router <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">createRouter</span><span class="token punctuation">(</span>mode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 设置渲染的地址</span>
+    <span class="token keyword">await</span> router<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>clientOptions<span class="token punctuation">.</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 创建 Vue 实例</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token comment">// 传入路由对象</span>
+        router<span class="token punctuation">,</span>
+        clientOptions<span class="token punctuation">,</span>
+        <span class="token function">render</span><span class="token punctuation">(</span>h<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">h</span><span class="token punctuation">(</span>App<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+</code></pre></div><h4 id="app-vue"><a href="#app-vue" class="header-anchor">#</a> app.vue</h4> <p>修改我们的视图文件，以便支持路由渲染</p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>app<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">&gt;</span></span>你好世界！<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">v-if</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>show<span class="token punctuation">&quot;</span></span> <span class="token attr-name">@click</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>close<span class="token punctuation">&quot;</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>text<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>
+            {{ installed ? '在客户端应该安装成功，点击我关闭!' : '未安装' }}
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-view</span> <span class="token punctuation">/&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><h2 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h2> <p>上述的教程，教你学会了一些基本的渲染器的使用，有了它，你可以和各种服务端框架配合使用了。本教程，这里提供了一个完整的demo，<a href="https://github.com/fmfe/genesis-router-demo" target="_blank" rel="noopener noreferrer">点击这里<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>了解更多。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/genesis-docs/guide/" class="prev router-link-active">
+        快速开始
+      </a></span> <span class="next"><a href="/genesis-docs/guide/micro.html">
+        微架构
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/genesis-docs/assets/js/app.022df389.js" defer></script><script src="/genesis-docs/assets/js/2.6651e0d9.js" defer></script><script src="/genesis-docs/assets/js/23.4b1e38b0.js" defer></script>
+  </body>
+</html>

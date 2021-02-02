@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>对远程组件进一步的设计和思考 | Vue Genesis</title>
+    <meta name="generator" content="VuePress 1.8.0">
+    
+    <meta name="description" content="基于 Vue SSR 的微前端、微服务、轻量级的解决方案">
+    
+    <link rel="preload" href="/genesis-docs/assets/css/0.styles.9716cb29.css" as="style"><link rel="preload" href="/genesis-docs/assets/js/app.022df389.js" as="script"><link rel="preload" href="/genesis-docs/assets/js/2.6651e0d9.js" as="script"><link rel="preload" href="/genesis-docs/assets/js/8.61a423db.js" as="script"><link rel="prefetch" href="/genesis-docs/assets/js/10.49dc398a.js"><link rel="prefetch" href="/genesis-docs/assets/js/11.b7fc9b06.js"><link rel="prefetch" href="/genesis-docs/assets/js/12.a52de3d4.js"><link rel="prefetch" href="/genesis-docs/assets/js/13.2b514f11.js"><link rel="prefetch" href="/genesis-docs/assets/js/14.ba15514c.js"><link rel="prefetch" href="/genesis-docs/assets/js/15.1e7ac3bb.js"><link rel="prefetch" href="/genesis-docs/assets/js/16.88519e39.js"><link rel="prefetch" href="/genesis-docs/assets/js/17.ce829375.js"><link rel="prefetch" href="/genesis-docs/assets/js/18.36a8f2b4.js"><link rel="prefetch" href="/genesis-docs/assets/js/19.3c6f9150.js"><link rel="prefetch" href="/genesis-docs/assets/js/20.889364e0.js"><link rel="prefetch" href="/genesis-docs/assets/js/21.4e36b231.js"><link rel="prefetch" href="/genesis-docs/assets/js/22.31f70d4b.js"><link rel="prefetch" href="/genesis-docs/assets/js/23.4b1e38b0.js"><link rel="prefetch" href="/genesis-docs/assets/js/24.d970ff37.js"><link rel="prefetch" href="/genesis-docs/assets/js/25.7467f657.js"><link rel="prefetch" href="/genesis-docs/assets/js/26.f80cc8b2.js"><link rel="prefetch" href="/genesis-docs/assets/js/3.4e60ce74.js"><link rel="prefetch" href="/genesis-docs/assets/js/4.fa8b61f4.js"><link rel="prefetch" href="/genesis-docs/assets/js/5.0d9d0dba.js"><link rel="prefetch" href="/genesis-docs/assets/js/6.06c3d24d.js"><link rel="prefetch" href="/genesis-docs/assets/js/7.6c204e70.js"><link rel="prefetch" href="/genesis-docs/assets/js/9.62b53333.js">
+    <link rel="stylesheet" href="/genesis-docs/assets/css/0.styles.9716cb29.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/genesis-docs/" class="home-link router-link-active"><!----> <span class="site-name">Vue Genesis</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/genesis-docs/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/genesis-docs/guide/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="核心库" class="dropdown-title"><span class="title">核心库</span> <span class="arrow down"></span></button> <button type="button" aria-label="核心库" class="mobile-dropdown-title"><span class="title">核心库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/genesis-docs/core/" class="nav-link">
+  genesis-core
+</a></li><li class="dropdown-item"><!----> <a href="/genesis-docs/compiler/" class="nav-link">
+  genesis-compiler
+</a></li><li class="dropdown-item"><!----> <a href="/genesis-docs/app/" class="nav-link">
+  genesis-app
+</a></li><li class="dropdown-item"><!----> <a href="/genesis-docs/remote/" class="nav-link">
+  genesis-remote
+</a></li></ul></div></div><div class="nav-item"><a href="/genesis-docs/blog/followme5.0.html" class="nav-link">
+  官方博客
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="多语言" class="dropdown-title"><span class="title">多语言</span> <span class="arrow down"></span></button> <button type="button" aria-label="多语言" class="mobile-dropdown-title"><span class="title">多语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://anish2690.github.io/genesis-docs-en/" target="_self" class="nav-link external">
+  English
+  <!----></a></li><li class="dropdown-item"><!----> <a href="https://fmfe.github.io/genesis-docs/guide/" target="_self" class="nav-link external">
+  简体中文
+  <!----></a></li></ul></div></div> <a href="https://github.com/fmfe/genesis" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/genesis-docs/" class="nav-link">
+  首页
+</a></div><div class="nav-item"><a href="/genesis-docs/guide/" class="nav-link">
+  指南
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="核心库" class="dropdown-title"><span class="title">核心库</span> <span class="arrow down"></span></button> <button type="button" aria-label="核心库" class="mobile-dropdown-title"><span class="title">核心库</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/genesis-docs/core/" class="nav-link">
+  genesis-core
+</a></li><li class="dropdown-item"><!----> <a href="/genesis-docs/compiler/" class="nav-link">
+  genesis-compiler
+</a></li><li class="dropdown-item"><!----> <a href="/genesis-docs/app/" class="nav-link">
+  genesis-app
+</a></li><li class="dropdown-item"><!----> <a href="/genesis-docs/remote/" class="nav-link">
+  genesis-remote
+</a></li></ul></div></div><div class="nav-item"><a href="/genesis-docs/blog/followme5.0.html" class="nav-link">
+  官方博客
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="多语言" class="dropdown-title"><span class="title">多语言</span> <span class="arrow down"></span></button> <button type="button" aria-label="多语言" class="mobile-dropdown-title"><span class="title">多语言</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://anish2690.github.io/genesis-docs-en/" target="_self" class="nav-link external">
+  English
+  <!----></a></li><li class="dropdown-item"><!----> <a href="https://fmfe.github.io/genesis-docs/guide/" target="_self" class="nav-link external">
+  简体中文
+  <!----></a></li></ul></div></div> <a href="https://github.com/fmfe/genesis" target="_blank" rel="noopener noreferrer" class="repo-link">
+    Github
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><a href="/genesis-docs/" aria-current="page" class="sidebar-link">Home</a></li><li><section class="sidebar-group depth-0"><a href="/genesis-docs/guide/" class="sidebar-heading clickable"><span>指南</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/genesis-docs/guide/introduce.html" class="sidebar-link">介绍</a></li><li><a href="/genesis-docs/guide/" class="sidebar-link">快速开始</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/genesis-docs/guide/" class="sidebar-heading clickable"><span>进阶</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/genesis-docs/guide/renderer.html" class="sidebar-link">渲染器</a></li><li><a href="/genesis-docs/guide/micro.html" class="sidebar-link">微架构</a></li><li><a href="/genesis-docs/guide/meta.html" class="sidebar-link">页面元信息</a></li><li><a href="/genesis-docs/guide/webpack.html" class="sidebar-link">Webpack</a></li><li><a href="/genesis-docs/guide/babel.html" class="sidebar-link">Babel</a></li><li><a href="/genesis-docs/guide/postcss.html" class="sidebar-link">Postcss</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/genesis-docs/blog/" class="sidebar-heading clickable router-link-active open"><span>官方博客</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/genesis-docs/blog/followme5.0.html" class="sidebar-link">基于 Vue SSR 的微架构在 FOLLOWME5.0 实践</a></li><li><a href="/genesis-docs/blog/2020-05-25.html" class="sidebar-link">基于 Vue CSR 的微前端实现方案</a></li><li><a href="/genesis-docs/blog/2020-06-18.html" aria-current="page" class="active sidebar-link">对远程组件进一步的设计和思考</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/genesis-docs/blog/2020-06-18.html#嵌入式调用" class="sidebar-link">嵌入式调用</a></li><li class="sidebar-sub-header"><a href="/genesis-docs/blog/2020-06-18.html#api-形式调用" class="sidebar-link">API 形式调用</a></li><li class="sidebar-sub-header"><a href="/genesis-docs/blog/2020-06-18.html#微服务" class="sidebar-link">微服务</a></li><li class="sidebar-sub-header"><a href="/genesis-docs/blog/2020-06-18.html#最后" class="sidebar-link">最后</a></li></ul></li><li><a href="/genesis-docs/blog/2020-06-27.html" class="sidebar-link">带你了解基于 Vue 的微服务解决方案 Genesis</a></li><li><a href="/genesis-docs/blog/2021-01-21.html" class="sidebar-link">2021基于Vue SSR的微服务&amp;微前端的解决方案Genesis的一些最佳实践</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="对远程组件进一步的设计和思考"><a href="#对远程组件进一步的设计和思考" class="header-anchor">#</a> 对远程组件进一步的设计和思考</h1> <p>远程组件，是 <code>Genesis</code> 提出的一个概念，它是指通过接口，调用一个另一个服务的组件，它可以是一个按钮、一个模块或者一个页面。</p> <h2 id="嵌入式调用"><a href="#嵌入式调用" class="header-anchor">#</a> 嵌入式调用</h2> <p>除了嵌入图片、视频之类的，在日常开发，嵌入调用最多的还是 <code>iframe</code>。<br>
+而远程组件，可以让你在服务端、客户端都能无缝的嵌入另外一个服务的页面。<br>
+如下图：
+<img src="/genesis-docs/assets/img/20200618215956.80736c5c.jpg" alt="">
+它的使用方式是这样子</p> <div class="language-vue extra-class"><pre class="language-vue"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>remote-view</span> <span class="token attr-name">:id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>1000<span class="token punctuation">&quot;</span></span> <span class="token attr-name">@myEvent</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>onMyEvent<span class="token punctuation">&quot;</span></span> <span class="token attr-name">:fetch</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>fetch<span class="token punctuation">&quot;</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>template</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>
+    methods<span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token function">fetch</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 调用其它服务的组件</span>
+            <span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token keyword">await</span> axios<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'/api/ssr-服务名称/render?url=/demo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>res<span class="token punctuation">.</span>status <span class="token operator">===</span> <span class="token number">200</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> res<span class="token punctuation">.</span>data<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> <span class="token keyword">null</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token function">onMyEvent</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// 处理远程组件的事件</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><h2 id="api-形式调用"><a href="#api-形式调用" class="header-anchor">#</a> API 形式调用</h2> <p>假设你有这样的一个弹框<br>
+如下图：<br> <img src="/genesis-docs/assets/img/20200618221216.361ec55c.jpg" alt=""><br>
+这个弹窗只有两种状态，要么取消、要么确定，操作完成。那么它可以设计成类似于下面的 API</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token keyword">await</span> Popup<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">switch</span> <span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">'cancel'</span><span class="token operator">:</span>
+        <span class="token comment">// 用户点击[取消]的时候做些什么</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">'confirm'</span><span class="token operator">:</span>
+        <span class="token comment">// 用户点击[确定]的时候做些什么</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>看到上面，是不是很像我们的接口调用的方式，只不过这次调的不是接口，而是一个 UI 组件。</p> <p>而远程组件，就可以为我们将这样的 UI 组件，抽象出一个真正类似于接口的组件，所以它的调用可能是下面这样子的</p> <div class="language-ts extra-class"><pre class="language-ts"><code><span class="token keyword">const</span> res <span class="token operator">=</span> <span class="token keyword">await</span> remote<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'/api/ssr-服务名称/render?url=/popup'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">switch</span> <span class="token punctuation">(</span>res<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">'cancel'</span><span class="token operator">:</span>
+        <span class="token comment">// 用户点击[取消]的时候做些什么</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">'confirm'</span><span class="token operator">:</span>
+        <span class="token comment">// 用户点击[确定]的时候做些什么</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="微服务"><a href="#微服务" class="header-anchor">#</a> 微服务</h2> <p>其实 <code>Genesis</code> 最核心的能力在于它可以真正的实现前端版本的微服务架构，独立部署、独立运行、服务和服务之间的调用，通过 API 的形式通信，它将大大的提升了前端的创造力。而微前端的概念，只是它顺便支持的功能而已。</p> <p>为什么需要它？<br>
+随着前端 SPA 应用的发展，项目越来越大，我们需要极其灵活的服务拆分方案，利用分治的思想，将一个大的应用，不断的拆解成一个小的应用，通过接口的形式，可以让我们的应用拆分做得更加的灵活。</p> <h2 id="最后"><a href="#最后" class="header-anchor">#</a> 最后</h2> <p><code>Genesis</code> 已经推广了这么多次，但是丝毫没有引起社区的关注，其实我倒是很乐意这个概念、这个设计的思想普及到，能诞生出更多成熟的微服务架构的解决方案。
+个人的写作能力有点差，如有疑问，欢迎在 <a href="https://github.com/fmfe/genesis/issues" target="_blank" rel="noopener noreferrer">issues<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> 讨论。<br>
+如果对本项目感兴趣的话，欢迎 Star <a href="https://github.com/fmfe/genesis" target="_blank" rel="noopener noreferrer">🔥基于 Vue SSR 的微前端、微服务、轻量级的解决方案🔥<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/genesis-docs/blog/2020-05-25.html" class="prev">
+        基于 Vue CSR 的微前端实现方案
+      </a></span> <span class="next"><a href="/genesis-docs/blog/2020-06-27.html">
+        带你了解基于 Vue 的微服务解决方案 Genesis
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/genesis-docs/assets/js/app.022df389.js" defer></script><script src="/genesis-docs/assets/js/2.6651e0d9.js" defer></script><script src="/genesis-docs/assets/js/8.61a423db.js" defer></script>
+  </body>
+</html>
